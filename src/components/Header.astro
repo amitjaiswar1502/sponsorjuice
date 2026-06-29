@@ -1,0 +1,85 @@
+---
+const navLinks = [
+  { href: '/', label: 'Home' },
+  { href: '/calculator/tiktok', label: 'TikTok' },
+  { href: '/calculator/instagram', label: 'Instagram' },
+  { href: '/calculator/youtube', label: 'YouTube' },
+  { href: '/blog', label: 'Blog' },
+  { href: '/about', label: 'About' },
+  { href: '/contact', label: 'Contact' },
+  { href: '/privacy', label: 'Privacy' },
+];
+
+const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
+
+function isActive(href: string): boolean {
+  const normalized = href.replace(/\/$/, '') || '/';
+  if (normalized === '/') return currentPath === '/';
+  return currentPath === normalized || currentPath.startsWith(`${normalized}/`);
+}
+---
+
+<header class="sticky top-0 z-50 border-b border-gray-200 bg-white/90 backdrop-blur-sm">
+  <div class="mx-auto max-w-6xl px-4 py-3 sm:py-4">
+    <div class="flex items-center justify-between">
+      <a
+        href="/"
+        class="flex items-center gap-2 text-lg font-bold text-gray-900 transition-opacity hover:opacity-80 focus-visible:rounded focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-juice-500 sm:text-xl"
+      >
+        <span class="text-2xl" aria-hidden="true">🍊</span>
+        <span>Sponsor<span class="text-juice-600">Juice</span></span>
+      </a>
+
+      <nav class="hidden items-center gap-4 lg:flex xl:gap-6" aria-label="Main navigation">
+        {
+          navLinks.map((link) => (
+            <a
+              href={link.href}
+              class:list={[
+                'text-sm font-medium transition-colors duration-200 focus-visible:rounded focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-juice-500',
+                isActive(link.href)
+                  ? 'font-semibold text-juice-600'
+                  : 'text-gray-600 hover:text-juice-600',
+              ]}
+              aria-current={isActive(link.href) ? 'page' : undefined}
+            >
+              {link.label}
+            </a>
+          ))
+        }
+      </nav>
+
+      <details class="relative lg:hidden">
+        <summary
+          class="cursor-pointer list-none rounded-lg p-2 text-gray-600 transition-colors hover:bg-gray-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-juice-500"
+          aria-label="Open navigation menu"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </summary>
+        <nav
+          class="absolute right-0 z-50 mt-2 w-[min(100vw-2rem,16rem)] rounded-xl border border-gray-200 bg-white py-2 shadow-lg"
+          aria-label="Mobile navigation"
+        >
+          {
+            navLinks.map((link) => (
+              <a
+                href={link.href}
+                class:list={[
+                  'block px-4 py-3 text-sm transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-juice-500',
+                  isActive(link.href)
+                    ? 'bg-juice-50 font-semibold text-juice-700'
+                    : 'text-gray-600 hover:bg-juice-50 hover:text-juice-600',
+                ]}
+                aria-current={isActive(link.href) ? 'page' : undefined}
+              >
+                {link.label}
+              </a>
+            ))
+          }
+        </nav>
+      </details>
+    </div>
+  </div>
+</header>

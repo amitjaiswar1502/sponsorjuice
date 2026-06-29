@@ -1,0 +1,66 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const siteUrl = import.meta.env.PUBLIC_SITE_URL || Astro.site?.href || 'https://sponsorjuice.com';
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: post.data.title,
+  description: post.data.description,
+  image: `${siteUrl}/og-image.svg`,
+  datePublished: post.data.pubDate.toISOString(),
+  author: {
+    '@type': 'Organization',
+    name: post.data.author,
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: 'SponsorJuice',
+    url: siteUrl,
+    logo: {
+      '@type': 'ImageObject',
+      url: `${siteUrl}/og-image.svg`,
+    },
+  },
+  mainEntityOfPage: `${siteUrl}/blog/${post.id}`,
+};
+---
+
+<Layout title={`${post.data.title} | SponsorJuice`} description={post.data.description}>
+  <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+
+  <article class="mx-auto max-w-3xl px-4 py-10 sm:px-6 sm:py-12">
+    <header class="mb-8 border-b border-gray-200 pb-6 sm:pb-8">
+      <time datetime={post.data.pubDate.toISOString()} class="text-sm text-gray-500">
+        {
+          post.data.pubDate.toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+          })
+        }
+      </time>
+      <h1 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">{post.data.title}</h1>
+      <p class="mt-2 text-sm text-gray-600">
+        By <span class="font-medium">{post.data.author}</span>
+      </p>
+      <p class="mt-4 max-w-prose text-base leading-relaxed text-gray-600 sm:text-lg">{post.data.description}</p>
+    </header>
+    <div class="prose max-w-prose">
+      <Content />
+    </div>
+  </article>
+</Layout>

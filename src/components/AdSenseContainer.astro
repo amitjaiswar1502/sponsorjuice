@@ -1,0 +1,113 @@
+---
+interface Props {
+  slotId: string;
+  format?: 'auto' | 'rectangle' | 'horizontal' | 'vertical';
+  class?: string;
+}
+
+const { slotId, format = 'auto', class: className = '' } = Astro.props;
+const adClient = import.meta.env.PUBLIC_ADSENSE_ID || '';
+const containerId = `adsense-${slotId}`;
+---
+
+{
+  adClient ? (
+    <div
+      id={containerId}
+      class={`adsense-container min-h-[90px] ${className}`}
+      data-ad-client={adClient}
+      data-ad-slot={slotId}
+      data-ad-format={format}
+    >
+      <ins
+        class="adsbygoogle block"
+        style="display:block"
+        data-ad-client={adClient}
+        data-ad-slot={slotId}
+        data-ad-format={format}
+        data-full-width-responsive="true"
+      />
+    </div>
+  ) : (
+    <div
+      class={`flex min-h-[90px] items-center justify-center rounded-lg border border-dashed border-gray-300 bg-gray-50 text-xs text-gray-500 ${className}`}
+    >
+      Ad placeholder
+    </div>
+  )
+}
+
+<script>
+  function loadAdSense(container: HTMLElement) {
+    const adClient = container.dataset.adClient;
+    if (!adClient || container.dataset.loaded === 'true') return;
+
+    container.dataset.loaded = 'true';
+
+    const loadScript = () => {
+      if (document.querySelector('script[data-adsense-loader]')) {
+        try {
+          ((window as unknown as { adsbygoogle: unknown[] }).adsbygoogle =
+            (window as unknown as { adsbygoogle: unknown[] }).adsbygoogle || []).push({});
+        } catch {
+          /* ad blocker */
+        }
+        return;
+      }
+
+      const script = document.createElement('script');
+      script.src = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adClient}`;
+      script.async = true;
+      script.crossOrigin = 'anonymous';
+      script.dataset.adsenseLoader = 'true';
+      script.onload = () => {
+        try {
+          ((window as unknown as { adsbygoogle: unknown[] }).adsbygoogle =
+            (window as unknown as { adsbygoogle: unknown[] }).adsbygoogle || []).push({});
+        } catch {
+          /* ad blocker */
+        }
+      };
+      document.head.appendChild(script);
+    };
+
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(loadScript, { timeout: 3000 });
+    } else {
+      setTimeout(loadScript, 100);
+    }
+  }
+
+  function initAdContainers() {
+    const containers = document.querySelectorAll<HTMLElement>('.adsense-container');
+    containers.forEach((container) => {
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                loadAdSense(entry.target as HTMLElement);
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { rootMargin: '200px', threshold: 0 },
+        );
+        observer.observe(container);
+      } else {
+        loadAdSense(container);
+      }
+    });
+
+    document.addEventListener(
+      'pointerdown',
+      () => {
+        containers.forEach((container) => loadAdSense(container));
+      },
+      { once: true, passive: true },
+    );
+  }
+
+  initAdContainers();
+  document.addEventListener('astro:page-load', initAdContainers);
+</script>

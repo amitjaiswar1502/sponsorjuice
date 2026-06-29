@@ -1,0 +1,128 @@
+---
+import Layout from '../layouts/Layout.astro';
+import AdSenseContainer from '../components/AdSenseContainer.astro';
+import CalculatorIsland from '../components/calculator/CalculatorIsland';
+
+const siteUrl = import.meta.env.PUBLIC_SITE_URL || Astro.site?.href || 'https://sponsorjuice.com';
+
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'SponsorJuice',
+  url: siteUrl,
+  description:
+    'Free creator rate calculator for TikTok, Instagram, and YouTube brand deals with pitch templates and offline history.',
+  potentialAction: {
+    '@type': 'SearchAction',
+    target: `${siteUrl}calculator/tiktok`,
+    'query-input': 'required name=search_term_string',
+  },
+};
+---
+
+<Layout
+  title="SponsorJuice — Free Creator Rate Calculator & Brand Pitch Builder"
+  description="Price TikTok, Instagram, and YouTube brand deals with our free calculator. Build sponsorship packages, generate pitch emails, and save rates offline."
+>
+  <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+
+  <section class="bg-gradient-to-b from-juice-50 to-gray-50 py-16">
+    <div class="mx-auto max-w-6xl px-4 text-center">
+      <h1 class="text-4xl font-bold tracking-tight text-gray-900 md:text-5xl">
+        Know Your Worth.<br />
+        <span class="text-juice-600">Charge With Confidence.</span>
+      </h1>
+      <p class="mx-auto mt-4 max-w-2xl text-lg text-gray-600">
+        Free creator rate calculator for TikTok, Instagram, and YouTube brand deals.
+        Build packages, generate pitch emails, and save your calculations offline.
+      </p>
+      <div class="mt-8 flex flex-wrap justify-center gap-4">
+        <a
+          href="/calculator/tiktok"
+          class="rounded-lg bg-juice-600 px-6 py-3 text-sm font-semibold text-white hover:bg-juice-700"
+        >
+          TikTok Calculator
+        </a>
+        <a
+          href="/calculator/instagram"
+          class="rounded-lg border border-juice-300 bg-white px-6 py-3 text-sm font-semibold text-juice-700 hover:bg-juice-50"
+        >
+          Instagram Calculator
+        </a>
+        <a
+          href="/calculator/youtube"
+          class="rounded-lg border border-juice-300 bg-white px-6 py-3 text-sm font-semibold text-juice-700 hover:bg-juice-50"
+        >
+          YouTube Calculator
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-4 py-12">
+    <CalculatorIsland client:idle />
+  </section>
+
+  <section class="border-t border-gray-200 bg-white py-12">
+    <div class="mx-auto max-w-6xl px-4">
+      <h2 class="mb-4 text-center text-2xl font-bold text-gray-900">
+        How SponsorJuice Calculates Brand Deal Rates
+      </h2>
+      <p class="mx-auto mb-8 max-w-3xl text-center text-gray-600">
+        Our formula multiplies your average views by a platform coefficient, niche multiplier, and
+        audience geography weight. Add deliverables like dedicated videos, Stories, and bio links
+        to build a custom package rate. Every estimate is a range — because real deals depend on
+        brand budget, exclusivity, and usage rights.
+      </p>
+      <p class="mx-auto mb-8 max-w-3xl text-center text-gray-600">
+        SponsorJuice runs entirely in your browser — no account required, no data sent to our
+        servers. Adjust the sliders, build a deliverables package, and copy a personalized pitch
+        email in under two minutes. Saved calculations stay on your device using local storage so
+        you can compare rates across platforms and campaigns over time.
+      </p>
+      <h2 class="mb-8 text-center text-2xl font-bold text-gray-900">
+        Why Creators Use SponsorJuice
+      </h2>
+      <div class="grid gap-8 md:grid-cols-3">
+        <div class="rounded-xl border border-gray-200 p-6 text-center">
+          <p class="text-3xl" aria-hidden="true">⚡</p>
+          <h3 class="mt-3 font-semibold text-gray-900">Instant Results</h3>
+          <p class="mt-2 text-sm text-gray-600">
+            Pure static HTML loads instantly. Calculator hydrates only when you need it.
+          </p>
+        </div>
+        <div class="rounded-xl border border-gray-200 p-6 text-center">
+          <p class="text-3xl" aria-hidden="true">📦</p>
+          <h3 class="mt-3 font-semibold text-gray-900">Package Builder</h3>
+          <p class="mt-2 text-sm text-gray-600">
+            Combine deliverables into custom packages with automatic rate multipliers.
+          </p>
+        </div>
+        <div class="rounded-xl border border-gray-200 p-6 text-center">
+          <p class="text-3xl" aria-hidden="true">✉️</p>
+          <h3 class="mt-3 font-semibold text-gray-900">Pitch Generator</h3>
+          <p class="mt-2 text-sm text-gray-600">
+            Real-time outreach templates that update as you adjust your metrics.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="border-t border-gray-200 bg-gray-50 py-12">
+    <div class="mx-auto max-w-3xl px-4">
+      <h2 class="text-2xl font-bold text-gray-900">Latest Creator Guide</h2>
+      <p class="mt-4 text-gray-600">
+        New to brand outreach? Read our step-by-step guide on{' '}
+        <a href="/blog/how-to-pitch" class="font-medium text-juice-600 hover:text-juice-700">
+          how to pitch brands as a content creator
+        </a>{' '}
+        — including email structure, package pricing, and common mistakes to avoid.
+      </p>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-4 py-8">
+    <AdSenseContainer slotId="home-ad" format="horizontal" />
+  </section>
+</Layout>

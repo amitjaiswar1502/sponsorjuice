@@ -1,0 +1,65 @@
+{
+  "tiktok": {
+    "title": "TikTok Brand Deal Rate Calculator 2026 | SponsorJuice",
+    "description": "Calculate how much TikTok creators should charge for brand deals. Free rate calculator with deliverables basket and pitch template generator.",
+    "h1": "TikTok Brand Deal Rate Calculator",
+    "intro": "How much should a TikTok creator charge for sponsored content? Use our free calculator to estimate your brand deal rates based on views, niche, audience location, and deliverables. TikTok sponsorship pricing depends on average views per post more than follower count — brands pay for reach. Adjust the sliders below to match your metrics, add deliverables to your package, and copy a ready-made pitch email.",
+    "keywords": ["tiktok brand deal rate", "tiktok sponsorship calculator", "how much to charge tiktok", "tiktok creator rates 2026"],
+    "faqs": [
+      {
+        "question": "How much should I charge for a TikTok brand deal?",
+        "answer": "TikTok brand deal rates typically range from $0.005 to $0.012 per view, multiplied by your niche and audience geography. A creator with 50K followers and 10K average views in the beauty niche targeting US audiences might charge $60–$144 per dedicated video."
+      },
+      {
+        "question": "What factors affect TikTok sponsorship rates?",
+        "answer": "Key factors include average views per post, content niche (finance and tech pay more than comedy), audience geography (US/CA audiences command premium rates), and deliverable type (dedicated videos vs. integrated ads vs. bio links)."
+      },
+      {
+        "question": "Do TikTok follower count or views matter more for pricing?",
+        "answer": "Views matter more than follower count for pricing. Brands care about actual reach and engagement, which is reflected in your average views per post rather than total follower count."
+      }
+    ]
+  },
+  "instagram": {
+    "title": "Instagram Sponsorship Rate Calculator 2026 | SponsorJuice",
+    "description": "Calculate Instagram influencer rates for brand deals. Free calculator with package pricing, deliverables basket, and outreach pitch generator.",
+    "h1": "Instagram Sponsorship Rate Calculator",
+    "intro": "How much should an Instagram influencer charge for sponsored posts? Estimate your rates based on views, niche, audience location, and the deliverables in your package. Instagram Reels, feed posts, and Stories each carry different value — our calculator lets you bundle them into a single sponsorship price. Finance and tech niches typically command higher rates than comedy or lifestyle content.",
+    "keywords": ["instagram sponsorship rate", "instagram influencer calculator", "how much to charge instagram", "instagram brand deal rates 2026"],
+    "faqs": [
+      {
+        "question": "How much should I charge for an Instagram sponsorship?",
+        "answer": "Instagram sponsorship rates typically range from $0.007 to $0.015 per view. A creator with 50K followers, 10K average views in the tech niche targeting US audiences might charge $105–$225 per dedicated post."
+      },
+      {
+        "question": "What deliverables should I include in an Instagram brand deal?",
+        "answer": "Common deliverables include dedicated feed posts, Stories, Reels, integrated product mentions, and bio link placements. Each adds value — use our deliverables basket to build custom package rates."
+      },
+      {
+        "question": "How do Instagram Reels rates compare to feed posts?",
+        "answer": "Reels typically command similar or slightly higher rates than static feed posts due to higher reach potential. Package multiple deliverables together for better overall compensation."
+      }
+    ]
+  },
+  "youtube": {
+    "title": "YouTube Sponsorship Rate Calculator 2026 | SponsorJuice",
+    "description": "Calculate YouTube creator sponsorship rates for brand deals. Free rate calculator with CPM-based pricing, deliverables, and pitch templates.",
+    "h1": "YouTube Sponsorship Rate Calculator",
+    "intro": "How much should a YouTuber charge for sponsored content? Calculate your brand deal rates based on average views, niche, audience geography, and deliverable packages. YouTube sponsorships typically pay more per view than TikTok or Instagram due to longer watch times and higher production value. Use dedicated video, integrated ad, and cross-platform deliverable options to build your quote.",
+    "keywords": ["youtube sponsorship rate", "youtube brand deal calculator", "how much to charge youtube", "youtube creator rates 2026"],
+    "faqs": [
+      {
+        "question": "How much should I charge for a YouTube sponsorship?",
+        "answer": "YouTube sponsorship rates typically range from $0.015 to $0.035 per view. A creator with 100K subscribers, 50K average views in the finance niche targeting US audiences might charge $1,350–$3,150 per dedicated video."
+      },
+      {
+        "question": "What is the difference between integrated and dedicated YouTube ads?",
+        "answer": "A dedicated video is entirely about the sponsor's product (highest rate). An integrated ad is a segment within your regular content (typically 60% of dedicated rate). Use our deliverables basket to price each type."
+      },
+      {
+        "question": "Do YouTube Shorts pay less than long-form sponsorships?",
+        "answer": "Yes, YouTube Shorts typically command lower sponsorship rates than long-form videos due to shorter watch time and different ad integration formats. Long-form dedicated videos remain the highest-value deliverable."
+      }
+    ]
+  }
+}

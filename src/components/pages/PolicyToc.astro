@@ -1,0 +1,44 @@
+---
+interface Section {
+  id: string;
+  label: string;
+}
+
+interface Props {
+  sections: Section[];
+}
+
+const { sections } = Astro.props;
+---
+
+<nav aria-label="Table of contents" class="lg:sticky lg:top-24 lg:self-start">
+  <!-- Mobile: horizontal pill nav -->
+  <div class="mb-6 flex gap-2 overflow-x-auto pb-2 lg:hidden">
+    {
+      sections.map((section) => (
+        <a
+          href={`#${section.id}`}
+          class="shrink-0 rounded-full border border-gray-200 bg-white px-4 py-2 text-sm font-medium text-gray-700 transition-colors duration-200 hover:border-juice-300 hover:text-juice-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-juice-500"
+        >
+          {section.label}
+        </a>
+      ))
+    }
+  </div>
+
+  <!-- Desktop: sticky sidebar -->
+  <ul class="hidden space-y-1 lg:block">
+    {
+      sections.map((section) => (
+        <li>
+          <a
+            href={`#${section.id}`}
+            class="block rounded-lg px-3 py-2 text-sm text-gray-600 transition-colors duration-200 hover:bg-juice-50 hover:text-juice-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-juice-500"
+          >
+            {section.label}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</nav>

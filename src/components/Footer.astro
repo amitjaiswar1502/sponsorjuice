@@ -1,0 +1,45 @@
+---
+const currentYear = new Date().getFullYear();
+
+const footerLinks = [
+  { href: '/calculator/tiktok', label: 'TikTok' },
+  { href: '/calculator/instagram', label: 'Instagram' },
+  { href: '/calculator/youtube', label: 'YouTube' },
+  { href: '/blog', label: 'Blog' },
+  { href: '/blog/how-to-pitch', label: 'Pitch guide' },
+  { href: '/about', label: 'About' },
+  { href: '/contact', label: 'Contact' },
+  { href: '/privacy', label: 'Privacy' },
+];
+---
+
+<footer class="border-t border-gray-200 bg-white">
+  <div class="mx-auto max-w-6xl px-4 py-8 sm:py-10">
+    <div class="flex flex-col gap-6 sm:gap-8">
+      <div class="flex flex-col items-center gap-2 text-center sm:items-start sm:text-left">
+        <div class="flex items-center gap-2 text-sm text-gray-600">
+          <span class="text-lg" aria-hidden="true">🍊</span>
+          <span>Sponsor<span class="font-semibold text-juice-600">Juice</span></span>
+        </div>
+        <p class="text-sm text-gray-500">Free creator rate calculator</p>
+      </div>
+
+      <nav class="grid grid-cols-2 gap-x-4 gap-y-3 sm:flex sm:flex-wrap sm:justify-center sm:gap-x-6 md:justify-start" aria-label="Footer navigation">
+        {
+          footerLinks.map((link) => (
+            <a
+              href={link.href}
+              class="text-sm text-gray-600 transition-colors duration-200 hover:text-juice-600 focus-visible:rounded focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-juice-500"
+            >
+              {link.label}
+            </a>
+          ))
+        }
+      </nav>
+    </div>
+
+    <p class="mt-6 text-center text-xs text-gray-500 sm:mt-8 sm:text-left">
+      &copy; {currentYear} SponsorJuice. Rates are estimates — not financial advice.
+    </p>
+  </div>
+</footer>
