@@ -17,8 +17,8 @@ include = []
 exclude = []
 allow_query_params = []
 drop_query_prefixes = [ "utm_", "gclid", "fbclid" ]
-respect_robots = true
-incremental = true
+respect_robots = false
+incremental = false
 breadth_first = true
 max_prefix_budget = 0.25
 use_cache_control = true
@@ -26,7 +26,7 @@ max_staleness_seconds = 86400
 
 [rules]
 enable = [ "*" ]
-disable = []
+disable = [ "legal/subprocessor-disclosure" ]
 
 [plugins]
 enabled = false

@@ -1,0 +1,34 @@
+# ----------------------------------------------------------------------
+# Apache Security and Caching Headers Configuration
+# ----------------------------------------------------------------------
+
+<IfModule mod_headers.c>
+  # 1. HSTS Header (Strict-Transport-Security)
+  Header set Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
+
+  # 2. Clickjacking Protection (X-Frame-Options)
+  Header set X-Frame-Options "DENY"
+
+  # 3. Prevent MIME Type Sniffing (X-Content-Type-Options)
+  Header set X-Content-Type-Options "nosniff"
+
+  # 4. Referrer Policy
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+
+  # 5. Feature/Permissions Policy
+  Header set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+
+  # 6. Content Security Policy (CSP)
+  # Allows self-hosted files, Google Fonts, and Google AdSense integration.
+  Header set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://pagead2.googlesyndication.com https://adservice.google.com https://googleads.g.doubleclick.net https://www.google.com https://www.googletagservices.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://pagead2.googlesyndication.com https://adservice.google.com https://googleads.g.doubleclick.net https://www.google.com; frame-src 'self' https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://pagead2.googlesyndication.com; connect-src 'self' https://pagead2.googlesyndication.com https://adservice.google.com;"
+
+  # 7. Cache-Control Headers for Static Assets (1 year freshness + immutable)
+  <FilesMatch "\.(css|js|woff|woff2|svg|png|jpg|jpeg|gif|ico|webp)$">
+    Header set Cache-Control "max-age=31536000, public, immutable"
+  </FilesMatch>
+  
+  # 8. Cache-Control Headers for HTML Files (1 hour freshness + must-revalidate)
+  <FilesMatch "\.(html|htm)$">
+    Header set Cache-Control "max-age=3600, public, must-revalidate"
+  </FilesMatch>
+</IfModule>

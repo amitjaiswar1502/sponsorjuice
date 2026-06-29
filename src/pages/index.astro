@@ -7,16 +7,57 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || Astro.site?.href || 'https://
 
 const websiteSchema = {
   '@context': 'https://schema.org',
-  '@type': 'WebSite',
-  name: 'SponsorJuice',
-  url: siteUrl,
-  description:
-    'Free creator rate calculator for TikTok, Instagram, and YouTube brand deals with pitch templates and offline history.',
-  potentialAction: {
-    '@type': 'SearchAction',
-    target: `${siteUrl}calculator/tiktok`,
-    'query-input': 'required name=search_term_string',
-  },
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      name: 'SponsorJuice',
+      url: siteUrl,
+      description:
+        'Free creator rate calculator for TikTok, Instagram, and YouTube brand deals with pitch templates and offline history.',
+      potentialAction: {
+        '@type': 'SearchAction',
+        target: `${siteUrl}calculator/tiktok/`,
+        'query-input': 'required name=search_term_string',
+      },
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: [
+        {
+          '@type': 'Question',
+          name: 'Is SponsorJuice free to use?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Yes, SponsorJuice is 100% free and open-source. All calculations, package builders, and pitch templates are fully accessible without any paywalls or registration requirements.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'Does SponsorJuice store my personal data?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'No, SponsorJuice runs entirely locally in your web browser. No follower metrics, view counts, or calculated rates are ever uploaded to any database or server. All history is stored purely in your browser\'s local storage.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'How are creator rates determined?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Rates are estimated using standard industry CPM ranges. The formula multiplies average video/reel views by a platform coefficient, and scales the range using specific content niche and target audience geography factors.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'Can I use the tool offline?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Yes, SponsorJuice is a fully compliant Progressive Web App (PWA) with active service workers. Once loaded, you can access the homepage and calculators offline, even without an active internet connection.',
+          },
+        },
+      ],
+    },
+  ],
 };
 ---
 
@@ -34,23 +75,23 @@ const websiteSchema = {
       </h1>
       <p class="mx-auto mt-4 max-w-2xl text-lg text-gray-600">
         Free creator rate calculator for TikTok, Instagram, and YouTube brand deals.
-        Build packages, generate pitch emails, and save your calculations offline.
+        Build packages, generate pitch emails, and save calculations offline.
       </p>
       <div class="mt-8 flex flex-wrap justify-center gap-4">
         <a
-          href="/calculator/tiktok"
+          href="/calculator/tiktok/"
           class="rounded-lg bg-juice-600 px-6 py-3 text-sm font-semibold text-white hover:bg-juice-700"
         >
           TikTok Calculator
         </a>
         <a
-          href="/calculator/instagram"
+          href="/calculator/instagram/"
           class="rounded-lg border border-juice-300 bg-white px-6 py-3 text-sm font-semibold text-juice-700 hover:bg-juice-50"
         >
           Instagram Calculator
         </a>
         <a
-          href="/calculator/youtube"
+          href="/calculator/youtube/"
           class="rounded-lg border border-juice-300 bg-white px-6 py-3 text-sm font-semibold text-juice-700 hover:bg-juice-50"
         >
           YouTube Calculator
@@ -69,16 +110,16 @@ const websiteSchema = {
         How SponsorJuice Calculates Brand Deal Rates
       </h2>
       <p class="mx-auto mb-8 max-w-3xl text-center text-gray-600">
-        Our formula multiplies your average views by a platform coefficient, niche multiplier, and
+        Our formula multiplies average views by a platform coefficient, niche multiplier, and
         audience geography weight. Add deliverables like dedicated videos, Stories, and bio links
         to build a custom package rate. Every estimate is a range — because real deals depend on
         brand budget, exclusivity, and usage rights.
       </p>
       <p class="mx-auto mb-8 max-w-3xl text-center text-gray-600">
-        SponsorJuice runs entirely in your browser — no account required, no data sent to our
+        SponsorJuice runs entirely in the browser — no account required, no metrics sent to external
         servers. Adjust the sliders, build a deliverables package, and copy a personalized pitch
-        email in under two minutes. Saved calculations stay on your device using local storage so
-        you can compare rates across platforms and campaigns over time.
+        email in under two minutes. Saved calculations stay locally using local storage so
+        creators can compare rates across platforms and campaigns over time.
       </p>
       <h2 class="mb-8 text-center text-2xl font-bold text-gray-900">
         Why Creators Use SponsorJuice
@@ -102,7 +143,7 @@ const websiteSchema = {
           <p class="text-3xl" aria-hidden="true">✉️</p>
           <h3 class="mt-3 font-semibold text-gray-900">Pitch Generator</h3>
           <p class="mt-2 text-sm text-gray-600">
-            Real-time outreach templates that update as you adjust your metrics.
+            Real-time outreach templates that update as metrics are adjusted.
           </p>
         </div>
       </div>
@@ -114,11 +155,88 @@ const websiteSchema = {
       <h2 class="text-2xl font-bold text-gray-900">Latest Creator Guide</h2>
       <p class="mt-4 text-gray-600">
         New to brand outreach? Read our step-by-step guide on{' '}
-        <a href="/blog/how-to-pitch" class="font-medium text-juice-600 hover:text-juice-700">
+        <a href="/blog/how-to-pitch/" class="font-medium text-juice-600 hover:text-juice-700">
           how to pitch brands as a content creator
         </a>{' '}
         — including email structure, package pricing, and common mistakes to avoid.
       </p>
+    </div>
+  </section>
+
+  <section class="border-t border-gray-200 bg-white py-16">
+    <div class="mx-auto max-w-3xl px-4">
+      <h2 class="mb-8 text-center text-3xl font-bold tracking-tight text-gray-900">
+        Frequently Asked Questions
+      </h2>
+      <div class="space-y-4">
+        <details class="group rounded-xl border border-gray-200 p-6 [&_summary::-webkit-details-marker]:hidden transition-all duration-300 open:bg-juice-50/30 open:border-juice-200">
+          <summary class="flex cursor-pointer items-center justify-between gap-1.5 text-gray-900">
+            <h3 class="text-lg font-semibold">Is SponsorJuice free to use?</h3>
+            <span class="relative h-5 w-5 shrink-0">
+              <svg xmlns="http://www.w3.org/2000/svg" class="absolute inset-0 h-5 w-5 opacity-100 group-open:opacity-0 transition-opacity duration-300 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" class="absolute inset-0 h-5 w-5 opacity-0 group-open:opacity-100 transition-opacity duration-300 text-juice-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </span>
+          </summary>
+          <p class="mt-4 leading-relaxed text-gray-600">
+            Yes, SponsorJuice is 100% free and open-source. All calculations, package builders, and pitch templates are fully accessible without any paywalls or registration requirements.
+          </p>
+        </details>
+
+        <details class="group rounded-xl border border-gray-200 p-6 [&_summary::-webkit-details-marker]:hidden transition-all duration-300 open:bg-juice-50/30 open:border-juice-200">
+          <summary class="flex cursor-pointer items-center justify-between gap-1.5 text-gray-900">
+            <h3 class="text-lg font-semibold">Does SponsorJuice store my personal data?</h3>
+            <span class="relative h-5 w-5 shrink-0">
+              <svg xmlns="http://www.w3.org/2000/svg" class="absolute inset-0 h-5 w-5 opacity-100 group-open:opacity-0 transition-opacity duration-300 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" class="absolute inset-0 h-5 w-5 opacity-0 group-open:opacity-100 transition-opacity duration-300 text-juice-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </span>
+          </summary>
+          <p class="mt-4 leading-relaxed text-gray-600">
+            No, SponsorJuice runs entirely locally in your web browser. No follower metrics, view counts, or calculated rates are ever uploaded to any database or server. All history is stored purely in your browser's local storage.
+          </p>
+        </details>
+
+        <details class="group rounded-xl border border-gray-200 p-6 [&_summary::-webkit-details-marker]:hidden transition-all duration-300 open:bg-juice-50/30 open:border-juice-200">
+          <summary class="flex cursor-pointer items-center justify-between gap-1.5 text-gray-900">
+            <h3 class="text-lg font-semibold">How are creator rates determined?</h3>
+            <span class="relative h-5 w-5 shrink-0">
+              <svg xmlns="http://www.w3.org/2000/svg" class="absolute inset-0 h-5 w-5 opacity-100 group-open:opacity-0 transition-opacity duration-300 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" class="absolute inset-0 h-5 w-5 opacity-0 group-open:opacity-100 transition-opacity duration-300 text-juice-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </span>
+          </summary>
+          <p class="mt-4 leading-relaxed text-gray-600">
+            Rates are estimated using standard industry CPM ranges. The formula multiplies average video/reel views by a platform coefficient, and scales the range using specific content niche and target audience geography factors.
+          </p>
+        </details>
+
+        <details class="group rounded-xl border border-gray-200 p-6 [&_summary::-webkit-details-marker]:hidden transition-all duration-300 open:bg-juice-50/30 open:border-juice-200">
+          <summary class="flex cursor-pointer items-center justify-between gap-1.5 text-gray-900">
+            <h3 class="text-lg font-semibold">Can I use the tool offline?</h3>
+            <span class="relative h-5 w-5 shrink-0">
+              <svg xmlns="http://www.w3.org/2000/svg" class="absolute inset-0 h-5 w-5 opacity-100 group-open:opacity-0 transition-opacity duration-300 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" class="absolute inset-0 h-5 w-5 opacity-0 group-open:opacity-100 transition-opacity duration-300 text-juice-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </span>
+          </summary>
+          <p class="mt-4 leading-relaxed text-gray-600">
+            Yes, SponsorJuice is a fully compliant Progressive Web App (PWA) with active service workers. Once loaded, you can access the homepage and calculators offline, even without an active internet connection.
+          </p>
+        </details>
+      </div>
     </div>
   </section>
 

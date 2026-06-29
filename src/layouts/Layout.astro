@@ -18,7 +18,11 @@ const {
 } = Astro.props;
 
 const siteUrl = import.meta.env.PUBLIC_SITE_URL || Astro.site?.href || 'https://sponsorjuice.com';
-const canonicalUrl = canonical || new URL(Astro.url.pathname, siteUrl).href;
+let pathname = Astro.url.pathname;
+if (!pathname.endsWith('/') && !pathname.split('/').pop()?.includes('.')) {
+  pathname += '/';
+}
+const canonicalUrl = canonical || new URL(pathname, siteUrl).href;
 const ogImage = image.startsWith('http') ? image : new URL(image, siteUrl).href;
 ---
 

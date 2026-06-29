@@ -10,7 +10,7 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://sponsorjuice.com',
   output: 'static',
-  trailingSlash: 'never',
+  trailingSlash: 'always',
   vite: {
     plugins: [tailwindcss()],
   },

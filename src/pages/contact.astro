@@ -42,9 +42,9 @@ const timeline = [
       <h2 class="text-xl font-bold text-gray-900">Creator support</h2>
       <p class="mt-3 text-sm leading-relaxed text-gray-600 sm:text-base">
         Need help pricing a specific brand deal? Start with our{" "}
-        <a href="/calculator/tiktok" class="font-medium text-juice-600 hover:text-juice-700">rate calculator{" "}</a>
+        <a href="/calculator/tiktok/" class="font-medium text-juice-600 hover:text-juice-700">rate calculator{" "}</a>
         and read our guide on
-        <a href="/blog/how-to-pitch" class="font-medium text-juice-600 hover:text-juice-700">{" "}how to pitch brands</a>.
+        <a href="/blog/how-to-pitch/" class="font-medium text-juice-600 hover:text-juice-700">{" "}how to pitch brands</a>.
         These resources cover the most common questions about sponsorship pricing and outreach.
       </p>
     </div>
@@ -59,18 +59,24 @@ const timeline = [
         <FaqItem question="Do you store my calculation data?">
           Saved calculations are stored in your browser's local storage only. We never receive or
           store them on our servers. See our{" "}
-          <a href="/privacy" class="font-medium text-juice-600 hover:text-juice-700">privacy policy{" "}</a>
+          <a href="/privacy/" class="font-medium text-juice-600 hover:text-juice-700">privacy policy{" "}</a>
           for details.
         </FaqItem>
-        <FaqItem question="Can I suggest a feature?">
-          Email
+        <FaqItem question="Can I suggest a feature or support other platforms?">
+          Absolutely. We are planning to add calculations for Twitch, Pinterest, and newsletter sponsorship channels. Email
           <a href="mailto:hello@sponsorjuice.com" class="font-medium text-juice-600 hover:text-juice-700">{" "}hello@sponsorjuice.com{" "}</a>
-          with your idea and we will consider it for future updates.
+          with your ideas, and we will consider them for future updates.
         </FaqItem>
         <FaqItem question="The calculator isn't working — what should I try?">
           Clear your browser cache or use a supported modern browser (Chrome, Firefox, Safari, or
           Edge). Most issues resolve with a hard refresh. If problems persist, email us with your
           browser name and a screenshot.
+        </FaqItem>
+        <FaqItem question="Can I use the rate calculator offline?">
+          Yes. SponsorJuice works entirely client-side. Once the page is loaded, you can use the calculators and package builder offline. Your saved history remains secure on your device using local storage.
+        </FaqItem>
+        <FaqItem question="How are the platform coefficients determined?">
+          Our calculations are based on standard industry averages and CPM ranges. However, every creator has a unique relationship with their audience. We recommend using the calculated numbers as a starting range for negotiation rather than a rigid price.
         </FaqItem>
       </div>
     </section>
@@ -90,7 +96,7 @@ const timeline = [
 
     <p class="text-center text-sm text-gray-500">
       For data and privacy details, see our
-      <a href="/privacy" class="font-medium text-juice-600 hover:text-juice-700">{" "}privacy policy</a>.
+      <a href="/privacy/" class="font-medium text-juice-600 hover:text-juice-700">{" "}privacy policy</a>.
     </p>
   </div>
 </Layout>
