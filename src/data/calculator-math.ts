@@ -1,4 +1,14 @@
-import type { DeliverableId, Geo, Niche, Platform, RateResult } from '../lib/types';
+import type {
+  DeliverableId,
+  Geo,
+  Niche,
+  Platform,
+  PlatformProfile,
+  PlatformRateLine,
+  RateResult,
+} from '../lib/types';
+
+export const ALL_PLATFORMS: Platform[] = ['tiktok', 'instagram', 'youtube'];
 
 export const PLATFORM_COEFF: Record<
   Platform,
@@ -69,6 +79,52 @@ export function calculateRates(
     packageRateLow: base.low * multiplier,
     packageRateHigh: base.high * multiplier,
   };
+}
+
+export function createDefaultProfiles(
+  initialPlatform: Platform,
+): PlatformProfile[] {
+  return ALL_PLATFORMS.map((platform) => ({
+    platform,
+    active: platform === initialPlatform,
+    followers: 50_000,
+    views: 10_000,
+    niche: 'beauty' as Niche,
+    geo: 'us_ca' as Geo,
+  }));
+}
+
+export function getActiveProfiles(
+  profiles: PlatformProfile[],
+): PlatformProfile[] {
+  return ALL_PLATFORMS.map((p) => profiles.find((pr) => pr.platform === p)!)
+    .filter((pr) => pr.active);
+}
+
+export function calculatePlatformRates(
+  profile: PlatformProfile,
+  basket: DeliverableId[],
+): PlatformRateLine & RateResult {
+  const rates = calculateRates(
+    profile.views,
+    profile.platform,
+    profile.niche,
+    profile.geo,
+    basket,
+  );
+  return { platform: profile.platform, ...rates };
+}
+
+export function sumPlatformRates(
+  lines: Pick<PlatformRateLine, 'packageRateLow' | 'packageRateHigh'>[],
+): { totalLow: number; totalHigh: number } {
+  return lines.reduce(
+    (acc, line) => ({
+      totalLow: acc.totalLow + line.packageRateLow,
+      totalHigh: acc.totalHigh + line.packageRateHigh,
+    }),
+    { totalLow: 0, totalHigh: 0 },
+  );
 }
 
 export function formatCurrency(amount: number): string {
@@ -143,6 +199,62 @@ export function formatPitchCurrency(amount: number, geo: Geo): string {
     currency,
     maximumFractionDigits: 0,
   }).format(value);
+}
+
+const PITCH_GEO_SHORT: Record<Geo, string> = {
+  us_ca: 'US/Canada',
+  uk_au: 'UK/Australia',
+  global: 'Global',
+};
+
+function formatPlatformList(platforms: Platform[]): string {
+  const labels = platforms.map((p) => PITCH_PLATFORM_LABELS[p]);
+  if (labels.length === 1) return labels[0];
+  if (labels.length === 2) return `${labels[0]} & ${labels[1]}`;
+  return `${labels.slice(0, -1).join(', ')} & ${labels[labels.length - 1]}`;
+}
+
+export function generateCombinedPitchTemplate(params: {
+  profiles: PlatformProfile[];
+  lines: Array<PlatformRateLine & { profile: PlatformProfile }>;
+  totalLow: number;
+  totalHigh: number;
+}): string {
+  const { profiles, lines, totalLow, totalHigh } = params;
+  const activeProfiles = getActiveProfiles(profiles);
+  const primaryGeo = activeProfiles[0].geo;
+  const subjectList = formatPlatformList(activeProfiles.map((p) => p.platform));
+
+  const bullets = lines
+    .map(({ profile, packageRateLow, packageRateHigh }) => {
+      const label = PITCH_PLATFORM_LABELS[profile.platform];
+      const { locale } = PITCH_GEO_CONFIG[profile.geo];
+      const rateRange = `${formatPitchCurrency(packageRateLow, profile.geo)} – ${formatPitchCurrency(packageRateHigh, profile.geo)}`;
+      return `• ${label} — ${profile.followers.toLocaleString(locale)} followers, ${profile.views.toLocaleString(locale)} avg views (${PITCH_NICHE_LABELS[profile.niche]}, ${PITCH_GEO_SHORT[profile.geo]}) — ${rateRange}`;
+    })
+    .join('\n');
+
+  const totalRange = `${formatPitchCurrency(totalLow, primaryGeo)} – ${formatPitchCurrency(totalHigh, primaryGeo)}`;
+  const currencyName = PITCH_GEO_CONFIG[primaryGeo].currency;
+
+  return `Subject: Multi-Platform Partnership — ${subjectList}
+
+Hi [Brand Name],
+
+I'm a content creator with an audience across multiple platforms:
+
+${bullets}
+
+Combined package rate for a cross-platform campaign: ${totalRange}
+
+Note: Total shown in ${currencyName}; individual platform rates above reflect local audience markets.
+
+I'd love to discuss a brand partnership that leverages my presence across these channels. I'm happy to share my media kit and discuss custom packages that align with your campaign goals.
+
+Looking forward to connecting!
+
+Best,
+[Your Name]`;
 }
 
 export function generatePitchTemplate(params: {

@@ -46,7 +46,15 @@ export default function CalculationHistory({ refreshKey, onLoad }: Props) {
     <div class="space-y-3">
       <h3 class="text-lg font-semibold text-gray-900">Saved Calculations</h3>
       <div class="max-h-48 space-y-2 overflow-auto">
-        {history.map((calc) => (
+        {history.map((calc) => {
+          const activeCount =
+            calc.version === 2 && calc.platformProfiles
+              ? calc.platformProfiles.filter((p) => p.active).length
+              : 1;
+          const label =
+            activeCount > 1 ? 'Multi-platform' : calc.platform;
+
+          return (
           <div
             key={calc.id}
             class="flex items-center justify-between rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm"
@@ -56,7 +64,7 @@ export default function CalculationHistory({ refreshKey, onLoad }: Props) {
               onClick={() => onLoad(calc)}
               class="flex-1 text-left hover:text-juice-600"
             >
-              <span class="font-medium capitalize">{calc.platform}</span>
+              <span class="font-medium capitalize">{label}</span>
               <span class="mx-1 text-gray-400">·</span>
               <span class="text-gray-600">
                 {formatCurrency(calc.packageRateLow)} – {formatCurrency(calc.packageRateHigh)}
@@ -74,7 +82,8 @@ export default function CalculationHistory({ refreshKey, onLoad }: Props) {
               ×
             </button>
           </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );

@@ -8,6 +8,23 @@ export type DeliverableId =
   | 'bio_link'
   | 'stories';
 
+export type PitchMode = 'combined' | Platform;
+
+export interface PlatformProfile {
+  platform: Platform;
+  active: boolean;
+  followers: number;
+  views: number;
+  niche: Niche;
+  geo: Geo;
+}
+
+export interface PlatformRateLine {
+  platform: Platform;
+  packageRateLow: number;
+  packageRateHigh: number;
+}
+
 export interface Deliverable {
   id: DeliverableId;
   label: string;
@@ -28,6 +45,10 @@ export interface SavedCalculation {
   packageRateLow: number;
   packageRateHigh: number;
   pitchText?: string;
+  version?: 2;
+  platformProfiles?: PlatformProfile[];
+  activePitchMode?: PitchMode;
+  pitchTexts?: Partial<Record<PitchMode, string>>;
 }
 
 export interface RateResult {

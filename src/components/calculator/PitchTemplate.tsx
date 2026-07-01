@@ -1,14 +1,33 @@
+import type { PitchMode, Platform } from '../../lib/types';
+
+const MODE_LABELS: Record<Platform, string> = {
+  tiktok: 'TikTok',
+  instagram: 'Instagram',
+  youtube: 'YouTube',
+};
+
+function labelForMode(mode: PitchMode): string {
+  if (mode === 'combined') return 'Combined';
+  return MODE_LABELS[mode];
+}
+
 interface Props {
+  pitchMode: PitchMode;
+  availableModes: PitchMode[];
   value: string;
   onChange: (value: string) => void;
   onRegenerate: () => void;
+  onModeChange: (mode: PitchMode) => void;
   isDirty?: boolean;
 }
 
 export default function PitchTemplate({
+  pitchMode,
+  availableModes,
   value,
   onChange,
   onRegenerate,
+  onModeChange,
   isDirty = false,
 }: Props) {
   const handleCopy = async () => {
@@ -40,6 +59,32 @@ export default function PitchTemplate({
           </button>
         </div>
       </div>
+
+      {availableModes.length > 1 && (
+        <div
+          class="flex gap-1 overflow-x-auto rounded-lg bg-gray-100 p-1"
+          role="tablist"
+          aria-label="Pitch type"
+        >
+          {availableModes.map((mode) => (
+            <button
+              key={mode}
+              type="button"
+              role="tab"
+              aria-selected={pitchMode === mode}
+              onClick={() => onModeChange(mode)}
+              class={`shrink-0 rounded-md px-3 py-1.5 text-sm font-medium transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-juice-500 ${
+                pitchMode === mode
+                  ? 'bg-white text-gray-900 shadow-sm'
+                  : 'text-gray-600 hover:text-gray-900'
+              }`}
+            >
+              {labelForMode(mode)}
+            </button>
+          ))}
+        </div>
+      )}
+
       {isDirty && (
         <p class="text-xs text-gray-500">
           Your edits are kept when you adjust sliders.
@@ -48,9 +93,9 @@ export default function PitchTemplate({
       <textarea
         value={value}
         onInput={(e) => onChange((e.target as HTMLTextAreaElement).value)}
-        rows={12}
-        class="-mx-1 max-h-64 w-full resize-y rounded-xl border border-gray-200 bg-gray-50 p-3 text-xs leading-relaxed text-gray-700 focus:border-juice-300 focus:outline-none focus:ring-2 focus:ring-juice-200 sm:mx-0 sm:p-4 sm:text-sm"
-        aria-label="Outreach pitch email"
+        rows={14}
+        class="-mx-1 max-h-80 w-full resize-y rounded-xl border border-gray-200 bg-gray-50 p-3 text-xs leading-relaxed text-gray-700 focus:border-juice-300 focus:outline-none focus:ring-2 focus:ring-juice-200 sm:mx-0 sm:p-4 sm:text-sm"
+        aria-label={`Outreach pitch email — ${labelForMode(pitchMode)}`}
       />
     </div>
   );

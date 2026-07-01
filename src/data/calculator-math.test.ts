@@ -2,12 +2,18 @@ import { describe, expect, it } from 'vitest';
 import {
   calculateBaseRate,
   calculateBasketMultiplier,
+  calculatePlatformRates,
   calculateRates,
+  createDefaultProfiles,
   formatCurrency,
   formatPitchCurrency,
+  generateCombinedPitchTemplate,
   generatePitchTemplate,
+  getActiveProfiles,
+  sumPlatformRates,
   USD_TO_GBP,
 } from './calculator-math';
+import type { PlatformProfile } from '../lib/types';
 
 describe('calculateBaseRate', () => {
   it('calculates TikTok beauty US rate correctly', () => {
@@ -112,5 +118,75 @@ describe('formatPitchCurrency', () => {
   it('formats USD for us_ca and global', () => {
     expect(formatPitchCurrency(126, 'us_ca')).toBe('$126');
     expect(formatPitchCurrency(126, 'global')).toBe('$126');
+  });
+});
+
+describe('multi-platform rates', () => {
+  const tiktokProfile: PlatformProfile = {
+    platform: 'tiktok',
+    active: true,
+    followers: 50_000,
+    views: 10_000,
+    niche: 'beauty',
+    geo: 'us_ca',
+  };
+
+  const instagramProfile: PlatformProfile = {
+    platform: 'instagram',
+    active: true,
+    followers: 30_000,
+    views: 8_000,
+    niche: 'beauty',
+    geo: 'us_ca',
+  };
+
+  it('sums platform package rates', () => {
+    const tiktokRates = calculatePlatformRates(tiktokProfile, []);
+    const instagramRates = calculatePlatformRates(instagramProfile, []);
+    const total = sumPlatformRates([tiktokRates, instagramRates]);
+
+    expect(total.totalLow).toBe(
+      tiktokRates.packageRateLow + instagramRates.packageRateLow,
+    );
+    expect(total.totalHigh).toBe(
+      tiktokRates.packageRateHigh + instagramRates.packageRateHigh,
+    );
+  });
+
+  it('returns only active profiles in platform order', () => {
+    const profiles = createDefaultProfiles('tiktok').map((p) =>
+      p.platform === 'instagram' ? { ...p, active: true } : p,
+    );
+    const active = getActiveProfiles(profiles);
+
+    expect(active.map((p) => p.platform)).toEqual(['tiktok', 'instagram']);
+  });
+});
+
+describe('generateCombinedPitchTemplate', () => {
+  it('includes line items for active platforms only', () => {
+    const profiles = createDefaultProfiles('tiktok').map((p) =>
+      p.platform === 'instagram' ? { ...p, active: true } : p,
+    );
+    const active = getActiveProfiles(profiles);
+    const lines = active.map((profile) => ({
+      profile,
+      ...calculatePlatformRates(profile, []),
+    }));
+    const total = sumPlatformRates(lines);
+
+    const pitch = generateCombinedPitchTemplate({
+      profiles,
+      lines,
+      totalLow: total.totalLow,
+      totalHigh: total.totalHigh,
+    });
+
+    expect(pitch).toContain('Multi-Platform Partnership — TikTok & Instagram');
+    expect(pitch).toContain('• TikTok —');
+    expect(pitch).toContain('• Instagram —');
+    expect(pitch).not.toContain('• YouTube —');
+    expect(pitch).toContain('Combined package rate');
+    expect(pitch).toContain('Total shown in USD');
   });
 });
