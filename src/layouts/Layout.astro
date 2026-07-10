@@ -18,6 +18,7 @@ const {
 } = Astro.props;
 
 const siteUrl = import.meta.env.PUBLIC_SITE_URL || Astro.site?.href || 'https://sponsorjuice.com';
+const adClient = import.meta.env.PUBLIC_ADSENSE_ID || 'ca-pub-1680488274273475';
 let pathname = Astro.url.pathname;
 if (!pathname.endsWith('/') && !pathname.split('/').pop()?.includes('.')) {
   pathname += '/';
@@ -31,7 +32,7 @@ const ogImage = image.startsWith('http') ? image : new URL(image, siteUrl).href;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" href="/fav2.png" />
     <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap-index.xml" />
     <meta name="theme-color" content="#f97316" />
 
@@ -50,6 +51,16 @@ const ogImage = image.startsWith('http') ? image : new URL(image, siteUrl).href;
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
+
+    {
+      adClient && (
+        <script
+          async
+          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adClient}`}
+          crossorigin="anonymous"
+        />
+      )
+    }
   </head>
   <body class="flex min-h-screen flex-col">
     <a href="#main-content" class="skip-link sr-only">Skip to content</a>

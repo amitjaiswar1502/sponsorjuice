@@ -6,7 +6,7 @@ interface Props {
 }
 
 const { slotId, format = 'auto', class: className = '' } = Astro.props;
-const adClient = import.meta.env.PUBLIC_ADSENSE_ID || '';
+const adClient = import.meta.env.PUBLIC_ADSENSE_ID || 'ca-pub-1680488274273475';
 const containerId = `adsense-${slotId}`;
 ---
 
@@ -38,6 +38,23 @@ const containerId = `adsense-${slotId}`;
 }
 
 <script>
+  function pushAd() {
+    try {
+      ((window as unknown as { adsbygoogle: unknown[] }).adsbygoogle =
+        (window as unknown as { adsbygoogle: unknown[] }).adsbygoogle || []).push({});
+    } catch {
+      /* ad blocker */
+    }
+  }
+
+  function isAdSenseScriptPresent() {
+    return Boolean(
+      document.querySelector(
+        'script[src*="pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"]',
+      ),
+    );
+  }
+
   function loadAdSense(container: HTMLElement) {
     const adClient = container.dataset.adClient;
     if (!adClient || container.dataset.loaded === 'true') return;
@@ -45,13 +62,8 @@ const containerId = `adsense-${slotId}`;
     container.dataset.loaded = 'true';
 
     const loadScript = () => {
-      if (document.querySelector('script[data-adsense-loader]')) {
-        try {
-          ((window as unknown as { adsbygoogle: unknown[] }).adsbygoogle =
-            (window as unknown as { adsbygoogle: unknown[] }).adsbygoogle || []).push({});
-        } catch {
-          /* ad blocker */
-        }
+      if (isAdSenseScriptPresent()) {
+        pushAd();
         return;
       }
 
@@ -59,15 +71,7 @@ const containerId = `adsense-${slotId}`;
       script.src = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adClient}`;
       script.async = true;
       script.crossOrigin = 'anonymous';
-      script.dataset.adsenseLoader = 'true';
-      script.onload = () => {
-        try {
-          ((window as unknown as { adsbygoogle: unknown[] }).adsbygoogle =
-            (window as unknown as { adsbygoogle: unknown[] }).adsbygoogle || []).push({});
-        } catch {
-          /* ad blocker */
-        }
-      };
+      script.onload = pushAd;
       document.head.appendChild(script);
     };
 
