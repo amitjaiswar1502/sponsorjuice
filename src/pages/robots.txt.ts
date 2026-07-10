@@ -7,6 +7,21 @@ export const GET: APIRoute = ({ site, url }) => {
 User-agent: *
 Allow: /
 
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: CCBot
+Disallow: /
+
 Sitemap: ${base}/sitemap-index.xml
 Sitemap: ${base}/sitemap.xml
 `.trim();

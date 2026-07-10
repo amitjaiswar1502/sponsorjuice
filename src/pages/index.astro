@@ -1,8 +1,11 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import CalculatorIsland from '../components/calculator/CalculatorIsland';
+import CalculatorStaticFallback from '../components/calculator/CalculatorStaticFallback.astro';
+import AdSenseContainer from '../components/AdSenseContainer.astro';
 
 const siteUrl = import.meta.env.PUBLIC_SITE_URL || Astro.site?.href || 'https://sponsorjuice.com';
+const adSlotId = import.meta.env.PUBLIC_ADSENSE_HOME_SLOT || '';
 
 const websiteSchema = {
   '@context': 'https://schema.org',
@@ -12,12 +15,21 @@ const websiteSchema = {
       name: 'SponsorJuice',
       url: siteUrl,
       description:
-        'Free creator rate calculator for TikTok, Instagram, and YouTube brand deals with pitch templates and offline history.',
-      potentialAction: {
-        '@type': 'SearchAction',
-        target: `${siteUrl}calculator/tiktok/`,
-        'query-input': 'required name=search_term_string',
+        'Free creator rate calculator for TikTok, Instagram, and YouTube brand deals with pitch templates and local history.',
+    },
+    {
+      '@type': 'WebApplication',
+      name: 'SponsorJuice Creator Rate Calculator',
+      url: siteUrl,
+      applicationCategory: 'BusinessApplication',
+      operatingSystem: 'Any',
+      offers: {
+        '@type': 'Offer',
+        price: '0',
+        priceCurrency: 'USD',
       },
+      description:
+        'Free calculator for TikTok, Instagram, and YouTube brand deal pricing with deliverables packages and pitch templates.',
     },
     {
       '@type': 'FAQPage',
@@ -27,7 +39,7 @@ const websiteSchema = {
           name: 'Is SponsorJuice free to use?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Yes, SponsorJuice is 100% free and open-source. All calculations, package builders, and pitch templates are fully accessible without any paywalls or registration requirements.',
+            text: 'Yes, SponsorJuice is 100% free. All calculations, package builders, and pitch templates are fully accessible without any paywalls or registration requirements.',
           },
         },
         {
@@ -48,10 +60,10 @@ const websiteSchema = {
         },
         {
           '@type': 'Question',
-          name: 'Can I use the tool offline?',
+          name: 'Does everything run in my browser?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Yes, SponsorJuice is a fully compliant Progressive Web App (PWA) with active service workers. Once loaded, you can access the homepage and calculators offline, even without an active internet connection.',
+            text: 'Yes. SponsorJuice runs entirely client-side in your browser. All calculations happen on your device without sending metrics to our servers. Saved history persists in local storage until you clear it.',
           },
         },
       ],
@@ -62,19 +74,19 @@ const websiteSchema = {
 
 <Layout
   title="SponsorJuice — Free Creator Rate Calculator & Brand Pitch Builder"
-  description="Price TikTok, Instagram, and YouTube brand deals with our free calculator. Build sponsorship packages, generate pitch emails, and save rates offline."
+  description="Price TikTok, Instagram, and YouTube brand deals with our free calculator. Build sponsorship packages, generate pitch emails, and save rates locally."
 >
   <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
 
   <section class="bg-gradient-to-b from-juice-50 to-gray-50 py-16">
     <div class="mx-auto max-w-6xl px-4 text-center">
-      <h1 class="text-4xl font-bold tracking-tight text-gray-900 md:text-5xl">
+      <h1 class="min-h-[5.5rem] text-4xl leading-tight font-bold tracking-tight text-gray-900 md:min-h-[6.5rem] md:text-5xl">
         Know Your Worth.<br />
         <span class="text-juice-600">Charge With Confidence.</span>
       </h1>
       <p class="mx-auto mt-4 max-w-2xl text-lg text-gray-600">
         Free creator rate calculator for TikTok, Instagram, and YouTube brand deals.
-        Build packages, generate pitch emails, and save calculations offline.
+        Build packages, generate pitch emails, and save calculations locally.
       </p>
       <div class="mt-8 flex flex-wrap justify-center gap-4">
         <a
@@ -99,8 +111,27 @@ const websiteSchema = {
     </div>
   </section>
 
+  <section class="border-b border-gray-200 bg-white py-10">
+    <div class="mx-auto max-w-3xl px-4">
+      <h2 class="text-2xl font-bold text-gray-900">What is SponsorJuice?</h2>
+      <p class="mt-4 leading-relaxed text-gray-600">
+        SponsorJuice is a free creator rate calculator that estimates TikTok, Instagram, and YouTube
+        brand deal pricing based on average views, content niche, audience geography, and deliverable
+        packages. The tool multiplies average views by a platform coefficient — TikTok $0.005–$0.012
+        per view, Instagram $0.007–$0.015, YouTube $0.015–$0.035 — then applies niche and geography
+        multipliers. A beauty creator with 10,000 average views and a US/Canada audience might charge
+        $60–$144 on TikTok, $105–$225 on Instagram, or higher on YouTube for a dedicated video.
+        Estimates follow publicly cited influencer marketing CPM benchmarks. All calculations run in
+        your browser with no account required; saved quotes persist in local storage only.
+      </p>
+    </div>
+  </section>
+
   <section class="mx-auto max-w-6xl px-4 py-12">
-    <CalculatorIsland client:idle />
+    <CalculatorStaticFallback />
+    <div class="min-h-[48rem]">
+      <CalculatorIsland client:load />
+    </div>
   </section>
 
   <section class="border-t border-gray-200 bg-white py-12">
@@ -181,7 +212,7 @@ const websiteSchema = {
             </span>
           </summary>
           <p class="mt-4 leading-relaxed text-gray-600">
-            Yes, SponsorJuice is 100% free and open-source. All calculations, package builders, and pitch templates are fully accessible without any paywalls or registration requirements.
+            Yes, SponsorJuice is 100% free. All calculations, package builders, and pitch templates are fully accessible without any paywalls or registration requirements.
           </p>
         </details>
 
@@ -221,7 +252,7 @@ const websiteSchema = {
 
         <details class="group rounded-xl border border-gray-200 p-6 [&_summary::-webkit-details-marker]:hidden transition-all duration-300 open:bg-juice-50/30 open:border-juice-200">
           <summary class="flex cursor-pointer items-center justify-between gap-1.5 text-gray-900">
-            <h3 class="text-lg font-semibold">Can I use the tool offline?</h3>
+            <h3 class="text-lg font-semibold">Does everything run in my browser?</h3>
             <span class="relative h-5 w-5 shrink-0">
               <svg xmlns="http://www.w3.org/2000/svg" class="absolute inset-0 h-5 w-5 opacity-100 group-open:opacity-0 transition-opacity duration-300 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -232,10 +263,18 @@ const websiteSchema = {
             </span>
           </summary>
           <p class="mt-4 leading-relaxed text-gray-600">
-            Yes, SponsorJuice is a fully compliant Progressive Web App (PWA) with active service workers. Once loaded, you can access the homepage and calculators offline, even without an active internet connection.
+            Yes. SponsorJuice runs entirely client-side in your browser. All calculations happen on your device without sending metrics to our servers. Saved history persists in local storage until you clear it.
           </p>
         </details>
       </div>
     </div>
   </section>
+
+  {
+    adSlotId && (
+      <section class="mx-auto max-w-6xl px-4 py-8">
+        <AdSenseContainer slotId={adSlotId} format="horizontal" />
+      </section>
+    )
+  }
 </Layout>

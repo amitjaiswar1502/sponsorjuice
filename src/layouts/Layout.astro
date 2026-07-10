@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import outfitLatin from '@fontsource-variable/outfit/files/outfit-latin-wght-normal.woff2?url';
 
 interface Props {
   title: string;
@@ -13,12 +14,25 @@ interface Props {
 const {
   title,
   description,
-  image = '/og-image.svg',
+  image = '/og-image.png',
   canonical,
 } = Astro.props;
 
 const siteUrl = import.meta.env.PUBLIC_SITE_URL || Astro.site?.href || 'https://sponsorjuice.com';
 const adClient = import.meta.env.PUBLIC_ADSENSE_ID || 'ca-pub-1680488274273475';
+
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'SponsorJuice',
+  url: siteUrl,
+  logo: new URL('/logo.webp', siteUrl).href,
+  contactPoint: {
+    '@type': 'ContactPoint',
+    email: 'amitjaiswar1502@gmail.com',
+    contactType: 'customer support',
+  },
+};
 let pathname = Astro.url.pathname;
 if (!pathname.endsWith('/') && !pathname.split('/').pop()?.includes('.')) {
   pathname += '/';
@@ -36,6 +50,8 @@ const ogImage = image.startsWith('http') ? image : new URL(image, siteUrl).href;
     <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap-index.xml" />
     <meta name="theme-color" content="#f97316" />
 
+    <link rel="preload" href={outfitLatin} as="font" type="font/woff2" crossorigin="anonymous" />
+
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalUrl} />
@@ -52,13 +68,25 @@ const ogImage = image.startsWith('http') ? image : new URL(image, siteUrl).href;
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
 
+    <script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
+
     {
       adClient && (
-        <script
-          async
-          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adClient}`}
-          crossorigin="anonymous"
-        />
+        <script is:inline define:vars={{ adClient }}>
+          window.addEventListener(
+            'load',
+            () => {
+              if (document.querySelector('script[data-adsense-deferred]')) return;
+              const script = document.createElement('script');
+              script.async = true;
+              script.src = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adClient}`;
+              script.crossOrigin = 'anonymous';
+              script.dataset.adsenseDeferred = 'true';
+              document.head.appendChild(script);
+            },
+            { once: true },
+          );
+        </script>
       )
     }
   </head>

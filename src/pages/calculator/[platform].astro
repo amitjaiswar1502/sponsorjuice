@@ -3,6 +3,7 @@ import type { Platform } from '../../lib/types';
 import seoConfig from '../../data/SEOConfig.json';
 import Layout from '../../layouts/Layout.astro';
 import CalculatorIsland from '../../components/calculator/CalculatorIsland';
+import CalculatorStaticFallback from '../../components/calculator/CalculatorStaticFallback.astro';
 
 export function getStaticPaths() {
   const platforms: Platform[] = ['tiktok', 'instagram', 'youtube'];
@@ -18,23 +19,41 @@ interface Props {
 }
 
 const { platform, seo } = Astro.props;
+const siteUrl = import.meta.env.PUBLIC_SITE_URL || Astro.site?.href || 'https://sponsorjuice.com';
 
-const faqSchema = {
+const pageSchema = {
   '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: seo.faqs.map((faq) => ({
-    '@type': 'Question',
-    name: faq.question,
-    acceptedAnswer: {
-      '@type': 'Answer',
-      text: faq.answer,
+  '@graph': [
+    {
+      '@type': 'FAQPage',
+      mainEntity: seo.faqs.map((faq) => ({
+        '@type': 'Question',
+        name: faq.question,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: faq.answer,
+        },
+      })),
     },
-  })),
+    {
+      '@type': 'WebApplication',
+      name: seo.h1,
+      url: `${siteUrl}/calculator/${platform}/`,
+      applicationCategory: 'BusinessApplication',
+      operatingSystem: 'Any',
+      offers: {
+        '@type': 'Offer',
+        price: '0',
+        priceCurrency: 'USD',
+      },
+      description: seo.description,
+    },
+  ],
 };
 ---
 
 <Layout title={seo.title} description={seo.description}>
-  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(pageSchema)} />
 
   <section class="bg-gradient-to-b from-juice-50 to-gray-50 py-12">
     <div class="mx-auto max-w-6xl px-4">
@@ -44,30 +63,27 @@ const faqSchema = {
       <p class="mt-4 max-w-2xl text-lg text-gray-600">
         {seo.intro}
       </p>
+      <p class="mt-4 max-w-3xl text-base leading-relaxed text-gray-600">
+        {seo.citabilityBlock}
+      </p>
     </div>
   </section>
 
   <section class="mx-auto max-w-6xl px-4 py-12">
-    <CalculatorIsland client:visible initialPlatform={platform} />
+    <CalculatorStaticFallback platform={platform} />
+    <div class="min-h-[48rem]">
+      <CalculatorIsland client:load initialPlatform={platform} />
+    </div>
   </section>
 
   <section class="border-t border-gray-200 bg-gray-50 py-12">
     <div class="mx-auto max-w-3xl px-4">
-      <h2 class="mb-4 text-2xl font-bold text-gray-900">How to Use This Calculator</h2>
-      <p class="text-gray-600">
-        Start by setting average views per post and selecting a content niche. Add the
-        primary audience location — creators with US and Canadian audiences typically command
-        higher sponsorship rates. Then build a deliverables package by adding items like dedicated
-        videos, integrated mentions, Stories, and bio link placements. The calculator shows a
-        low-to-high rate range for confident negotiation. Save calculations for later
-        or copy the auto-generated pitch email to send directly to brands.
-      </p>
+      <h2 class="mb-4 text-2xl font-bold text-gray-900">{seo.howToUseHeading}</h2>
+      <p class="text-gray-600">{seo.howToUse}</p>
       <p class="mt-4 text-gray-600">
-        Read the <a href="/blog/how-to-pitch/" class="font-medium text-juice-600 hover:text-juice-700">brand pitch guide{" "}</a>
-        for outreach tips, or explore calculators for{" "}
-        <a href="/calculator/tiktok/" class="text-juice-600 hover:text-juice-700">TikTok</a>,
-        <a href="/calculator/instagram/" class="text-juice-600 hover:text-juice-700">Instagram</a>, and
-        <a href="/calculator/youtube/" class="text-juice-600 hover:text-juice-700">YouTube</a>.
+        Read our{' '}
+        <a href="/blog/how-to-pitch/" class="font-medium text-juice-600 hover:text-juice-700">brand pitch guide</a>{' '}
+        {seo.crossLinkSuffix}
       </p>
     </div>
   </section>

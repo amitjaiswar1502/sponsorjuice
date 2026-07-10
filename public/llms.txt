@@ -1,0 +1,19 @@
+# SponsorJuice
+> Free creator rate calculator for TikTok, Instagram, and YouTube brand deals. Estimates sponsorship pricing from average views, niche, audience geography, and deliverable packages. Includes pitch templates and local calculation history.
+
+## Key pages
+- [Home](https://sponsorjuice.com/): Main calculator and overview
+- [TikTok Calculator](https://sponsorjuice.com/calculator/tiktok/): TikTok brand deal rate estimator
+- [Instagram Calculator](https://sponsorjuice.com/calculator/instagram/): Instagram sponsorship rate estimator
+- [YouTube Calculator](https://sponsorjuice.com/calculator/youtube/): YouTube sponsorship rate estimator
+- [Creator Guides](https://sponsorjuice.com/blog/): Pricing and outreach articles
+- [About](https://sponsorjuice.com/about/): Mission and methodology
+- [Contact](https://sponsorjuice.com/contact/): Support and inquiries
+- [Privacy Policy](https://sponsorjuice.com/privacy/): Data and advertising practices
+
+## Key facts
+- SponsorJuice is 100% free with no account required
+- Calculations run client-side in the browser; saved history uses local storage only
+- Rate formula: average views × platform coefficient × niche multiplier × geography weight
+- Platform coefficients (per view): TikTok $0.005–$0.012, Instagram $0.007–$0.015, YouTube $0.015–$0.035
+- Contact: amitjaiswar1502@gmail.com

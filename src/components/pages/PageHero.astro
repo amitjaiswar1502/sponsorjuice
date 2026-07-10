@@ -1,4 +1,6 @@
 ---
+import BreadcrumbSchema from '../seo/BreadcrumbSchema.astro';
+
 interface Props {
   title: string;
   subtitle?: string;
@@ -7,7 +9,14 @@ interface Props {
 }
 
 const { title, subtitle, badge, currentPage } = Astro.props;
+
+const breadcrumbItems = [
+  { name: 'Home', url: '/' },
+  { name: currentPage, url: Astro.url.pathname },
+];
 ---
+
+<BreadcrumbSchema items={breadcrumbItems} />
 
 <section class="page-grain border-b border-juice-100 bg-gradient-to-br from-juice-50 via-white to-gray-50 py-10 md:py-14">
   <div class="relative mx-auto max-w-4xl px-4 sm:px-6">

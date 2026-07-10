@@ -28,7 +28,7 @@ export default function CalculationHistory({ refreshKey, onLoad }: Props) {
 
   if (!storageOk) {
     return (
-      <div class="rounded-xl border border-amber-200 bg-amber-50 p-4 text-sm text-amber-700">
+      <div class="min-h-[13rem] rounded-xl border border-amber-200 bg-amber-50 p-4 text-sm text-amber-700">
         Storage unavailable — saved calculations cannot be stored in this browser.
       </div>
     );
@@ -36,14 +36,14 @@ export default function CalculationHistory({ refreshKey, onLoad }: Props) {
 
   if (history.length === 0) {
     return (
-      <div class="rounded-xl border border-gray-200 bg-gray-50 p-4 text-sm text-gray-500">
+      <div class="min-h-[13rem] rounded-xl border border-gray-200 bg-gray-50 p-4 text-sm text-gray-500">
         No saved calculations yet. Hit &quot;Save Calculation&quot; to keep a record.
       </div>
     );
   }
 
   return (
-    <div class="space-y-3">
+    <div class="min-h-[13rem] space-y-3">
       <h3 class="text-lg font-semibold text-gray-900">Saved Calculations</h3>
       <div class="max-h-48 space-y-2 overflow-auto">
         {history.map((calc) => {

@@ -1,0 +1,31 @@
+---
+import type { Platform } from '../../lib/types';
+import { calculateBaseRate, formatCurrency } from '../../data/calculator-math';
+
+interface Props {
+  platform?: Platform;
+}
+
+const { platform = 'tiktok' } = Astro.props;
+
+const views = 10000;
+const niche = 'beauty';
+const geo = 'us_ca';
+const rate = calculateBaseRate(views, platform, niche, geo);
+
+const platformLabels: Record<Platform, string> = {
+  tiktok: 'TikTok',
+  instagram: 'Instagram',
+  youtube: 'YouTube',
+};
+---
+
+<div class="mb-6 rounded-xl border border-juice-200 bg-juice-50/50 p-4 sm:p-5">
+  <p class="text-sm font-semibold text-gray-900">Example estimate</p>
+  <p class="mt-2 text-sm leading-relaxed text-gray-700">
+    A {platformLabels[platform]} creator with 10,000 average views, beauty niche, and a US/Canada
+    audience might charge <strong>{formatCurrency(rate.low)} – {formatCurrency(rate.high)}</strong>{' '}
+    for a dedicated video. Rates use the formula: average views × platform coefficient × niche
+    multiplier × geography weight. Adjust the interactive calculator below for your metrics.
+  </p>
+</div>

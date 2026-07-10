@@ -20,8 +20,9 @@ const articleSchema = {
   '@type': 'Article',
   headline: post.data.title,
   description: post.data.description,
-  image: `${siteUrl}/og-image.svg`,
+  image: `${siteUrl}/og-image.png`,
   datePublished: post.data.pubDate.toISOString(),
+  dateModified: post.data.pubDate.toISOString(),
   author: {
     '@type': 'Organization',
     name: post.data.author,
@@ -32,10 +33,10 @@ const articleSchema = {
     url: siteUrl,
     logo: {
       '@type': 'ImageObject',
-      url: `${siteUrl}/og-image.svg`,
+      url: `${siteUrl}/logo.webp`,
     },
   },
-  mainEntityOfPage: `${siteUrl}/blog/${post.id}`,
+  mainEntityOfPage: `${siteUrl}/blog/${post.id}/`,
 };
 ---
 

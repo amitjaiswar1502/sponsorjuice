@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
+import BreadcrumbSchema from '../../components/seo/BreadcrumbSchema.astro';
 
 const posts = (await getCollection('blog')).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
@@ -11,6 +12,7 @@ const posts = (await getCollection('blog')).sort(
   title="Creator Guides & Brand Deal Tips | SponsorJuice Blog"
   description="Expert guides for creators on pricing brand deals, writing sponsorship pitches, and negotiating rates on TikTok, Instagram, and YouTube."
 >
+  <BreadcrumbSchema items={[{ name: 'Home', url: '/' }, { name: 'Blog', url: '/blog/' }]} />
   <section class="bg-gradient-to-b from-juice-50 to-gray-50 py-10 sm:py-12">
     <div class="mx-auto max-w-4xl px-4 sm:px-6">
       <h1 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Creator guides</h1>

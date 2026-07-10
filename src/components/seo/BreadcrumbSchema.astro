@@ -1,0 +1,21 @@
+---
+interface Props {
+  items: { name: string; url: string }[];
+}
+
+const { items } = Astro.props;
+const siteUrl = import.meta.env.PUBLIC_SITE_URL || Astro.site?.href || 'https://sponsorjuice.com';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: items.map((item, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    name: item.name,
+    item: item.url.startsWith('http') ? item.url : new URL(item.url, siteUrl).href,
+  })),
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />
