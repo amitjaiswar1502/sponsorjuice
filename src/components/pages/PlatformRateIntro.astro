@@ -1,0 +1,141 @@
+---
+import type { Geo, Niche, Platform } from '../../lib/types';
+import {
+  PLATFORM_COEFF,
+  calculateBaseRate,
+  formatCurrency,
+} from '../../data/calculator-math';
+
+interface Props {
+  platform: Platform;
+  intro: string;
+  contextBullets: string[];
+  example: {
+    niche: Niche;
+    nicheLabel: string;
+    views: number;
+    geo: Geo;
+    geoLabel: string;
+  };
+  citabilityBlock: string;
+}
+
+const { platform, intro, contextBullets, example, citabilityBlock } = Astro.props;
+
+const platformLabels: Record<Platform, string> = {
+  tiktok: 'TikTok',
+  instagram: 'Instagram',
+  youtube: 'YouTube',
+  facebook: 'Facebook',
+};
+
+const coeff = PLATFORM_COEFF[platform];
+const rate = calculateBaseRate(example.views, platform, example.niche, example.geo);
+const coefficientRange = `$${coeff.low.toFixed(3)}–$${coeff.high.toFixed(3)}`;
+const exampleRange = `${formatCurrency(rate.low)}–${formatCurrency(rate.high)}`;
+
+const methodologyParagraphs = citabilityBlock
+  .split(/(?<=\.)\s+/)
+  .filter(Boolean)
+  .reduce<string[]>((paragraphs, sentence, index, sentences) => {
+    if (index % 2 === 0) {
+      const next = sentences[index + 1];
+      paragraphs.push(next ? `${sentence} ${next}` : sentence);
+    }
+    return paragraphs;
+  }, []);
+
+function highlightRates(text: string): string {
+  return text.replace(
+    /\$[\d,.]+(?:\s+(?:to|–|-)\s+\$[\d,.]+)?/g,
+    '<span class="font-data font-medium text-gray-900">$&</span>',
+  );
+}
+---
+
+<div class="mt-5 max-w-3xl">
+  <p class="max-w-[65ch] text-lg leading-[1.65] text-pretty text-gray-600">
+    {intro}
+  </p>
+
+  <div class="mt-8 rounded-xl border border-gray-200 bg-white/80 p-4 shadow-sm shadow-orange-100/40 sm:p-5">
+    <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+      <div>
+        <p class="text-sm font-semibold text-gray-900">
+          {platformLabels[platform]} coefficient
+        </p>
+        <p class="mt-1 text-sm text-gray-500">
+          Per view, before niche and audience location multipliers.
+        </p>
+      </div>
+      <p class="font-data text-xl font-semibold text-gray-900 sm:text-2xl">
+        {coefficientRange}
+      </p>
+    </div>
+  </div>
+
+  <div class="mt-5 rounded-xl border border-juice-200 bg-juice-50/70 p-4 sm:p-5">
+    <div class="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+      <div>
+        <p class="text-sm font-semibold text-gray-900">Example dedicated-video range</p>
+        <p class="mt-1 text-sm text-gray-600">
+          {example.nicheLabel} niche ·{' '}
+          <span class="font-data text-gray-800">{example.views.toLocaleString()}</span> avg views ·{' '}
+          {example.geoLabel} audience
+        </p>
+      </div>
+      <p class="font-data text-2xl font-bold text-juice-700">
+        {exampleRange}
+      </p>
+    </div>
+  </div>
+
+  <ul class="mt-6 grid gap-3 text-base leading-[1.65] text-gray-700 sm:grid-cols-3">
+    {
+      contextBullets.map((item) => (
+        <li class="rounded-lg border border-gray-200 bg-white/70 px-4 py-3">
+          {item}
+        </li>
+      ))
+    }
+  </ul>
+
+  <details class="methodology-details mt-6 overflow-hidden rounded-xl border border-gray-200 bg-white/80">
+    <summary class="cursor-pointer px-5 py-4 text-sm font-semibold tracking-wide text-gray-900">
+      Pricing methodology details
+    </summary>
+    <div class="space-y-5 border-t border-gray-100 px-5 py-5">
+      {
+        methodologyParagraphs.map((paragraph) => (
+          <p
+            class="max-w-[65ch] text-base leading-[1.65] text-pretty text-gray-700"
+            set:html={highlightRates(paragraph)}
+          />
+        ))
+      }
+    </div>
+  </details>
+</div>
+
+<style>
+  .methodology-details summary {
+    list-style: none;
+  }
+
+  .methodology-details summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .methodology-details summary::after {
+    content: '+';
+    float: right;
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: rgb(107 114 128);
+    line-height: 1.25rem;
+  }
+
+  .methodology-details[open] summary::after {
+    content: '−';
+  }
+</style>

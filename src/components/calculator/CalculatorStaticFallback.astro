@@ -17,6 +17,7 @@ const platformLabels: Record<Platform, string> = {
   tiktok: 'TikTok',
   instagram: 'Instagram',
   youtube: 'YouTube',
+  facebook: 'Facebook',
 };
 ---
 
@@ -24,7 +25,7 @@ const platformLabels: Record<Platform, string> = {
   <p class="text-sm font-semibold text-gray-900">Example estimate</p>
   <p class="mt-2 text-sm leading-relaxed text-gray-700">
     A {platformLabels[platform]} creator with 10,000 average views, beauty niche, and a US/Canada
-    audience might charge <strong>{formatCurrency(rate.low)} – {formatCurrency(rate.high)}</strong>{' '}
+    audience might charge <strong class="font-data">{formatCurrency(rate.low)} – {formatCurrency(rate.high)}</strong>{' '}
     for a dedicated video. Rates use the formula: average views × platform coefficient × niche
     multiplier × geography weight. Adjust the interactive calculator below for your metrics.
   </p>

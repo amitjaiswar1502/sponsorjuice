@@ -17,6 +17,7 @@ const PLATFORMS: { value: Platform; label: string }[] = [
   { value: 'tiktok', label: 'TikTok' },
   { value: 'instagram', label: 'Instagram' },
   { value: 'youtube', label: 'YouTube' },
+  { value: 'facebook', label: 'Facebook' },
 ];
 
 const NICHES: { value: Niche; label: string }[] = [
@@ -69,7 +70,7 @@ export default function MetricsSliders({
       <div>
         <label for="followers-slider" class="mb-2 flex justify-between text-sm font-medium text-gray-700">
           <span>Followers</span>
-          <span class="text-juice-600">{followers.toLocaleString()}</span>
+          <span class="font-data text-juice-600">{followers.toLocaleString()}</span>
         </label>
         <input
           id="followers-slider"
@@ -88,7 +89,7 @@ export default function MetricsSliders({
       <div>
         <label for="views-slider" class="mb-2 flex justify-between text-sm font-medium text-gray-700">
           <span>Average Views per Post</span>
-          <span class="text-juice-600">{views.toLocaleString()}</span>
+          <span class="font-data text-juice-600">{views.toLocaleString()}</span>
         </label>
         <input
           id="views-slider"

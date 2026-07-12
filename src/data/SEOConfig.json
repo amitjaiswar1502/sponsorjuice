@@ -3,16 +3,28 @@
     "title": "TikTok Brand Deal Rate Calculator 2026 | SponsorJuice",
     "description": "Calculate how much TikTok creators should charge for brand deals. Free rate calculator with deliverables basket and pitch template generator.",
     "h1": "TikTok Brand Deal Rate Calculator",
-    "intro": "How much should a TikTok creator charge for sponsored content? Use our free calculator to estimate brand deal rates based on views, niche, audience location, and deliverables. TikTok sponsorship pricing depends on average views per post more than follower count — brands pay for reach. Adjust the sliders below to match metrics, add deliverables to a package, and copy a ready-made pitch email.",
+    "intro": "How much should a TikTok creator charge for sponsored content? Estimate a fair rate from average views, niche, audience location, and deliverables — then turn it into a ready-to-send pitch.",
+    "contextBullets": [
+      "TikTok pricing depends on average views more than follower count.",
+      "Finance and tech niches usually command stronger sponsorship rates.",
+      "Bundle Stories, bio links, and dedicated videos to raise package value."
+    ],
+    "example": {
+      "niche": "beauty",
+      "nicheLabel": "Beauty",
+      "views": 10000,
+      "geo": "us_ca",
+      "geoLabel": "US/Canada"
+    },
     "howToUse": "Enter average views per TikTok post and select your content niche. Set your primary audience location — creators with US and Canadian audiences typically command higher sponsorship rates. Add deliverables like dedicated videos, integrated mentions, Stories, and bio link placements to build a package. The calculator shows a low-to-high rate range you can use in negotiations, then save results or copy the auto-generated pitch email.",
     "crossLinkSuffix": "for TikTok outreach tips, then compare your quote against our Instagram and YouTube calculators if you publish on multiple platforms.",
     "howToUseHeading": "How do I calculate TikTok sponsorship rates?",
-    "citabilityBlock": "A TikTok creator sponsorship rate is the price a brand pays for sponsored content on TikTok, typically calculated per view rather than per follower. SponsorJuice estimates TikTok brand deal rates using average views per post multiplied by a platform coefficient of $0.005 to $0.012 per view, then adjusted for content niche and audience geography. For example, a beauty creator with 10,000 average views and a US/Canada audience might charge $60 to $144 for a dedicated video. Finance and tech niches command higher multipliers than comedy. Industry benchmarks from influencer marketing reports suggest views consistently outweigh raw follower counts when brands set budgets. Bundle deliverables like Stories and bio links to increase package value, then use the interactive calculator below to model your own metrics.",
+    "citabilityBlock": "A TikTok creator sponsorship rate is the price a brand pays for sponsored content on TikTok, typically calculated per view rather than per follower. SponsorJuice estimates TikTok brand deal rates using average views per post multiplied by a platform coefficient of $0.005 to $0.012 per view, then adjusted for content niche and audience geography. For example, a beauty creator with 10,000 average views and a US/Canada audience might charge $90 to $216 for a dedicated video. Finance and tech niches command higher multipliers than comedy. Industry benchmarks from influencer marketing reports suggest views consistently outweigh raw follower counts when brands set budgets. Bundle deliverables like Stories and bio links to increase package value, then use the interactive calculator below to model your own metrics.",
     "keywords": ["tiktok brand deal rate", "tiktok sponsorship calculator", "how much to charge tiktok", "tiktok creator rates 2026"],
     "faqs": [
       {
         "question": "How much should I charge for a TikTok brand deal?",
-        "answer": "TikTok brand deal rates typically range from $0.005 to $0.012 per view, multiplied by niche and audience geography. A creator with 50K followers and 10K average views in the beauty niche targeting US audiences might charge $60–$144 per dedicated video."
+        "answer": "TikTok brand deal rates typically range from $0.005 to $0.012 per view, multiplied by niche and audience geography. A creator with 10K average views in the beauty niche targeting US audiences might charge $90–$216 per dedicated video."
       },
       {
         "question": "What factors affect TikTok sponsorship rates?",
@@ -28,16 +40,28 @@
     "title": "Instagram Sponsorship Rate Calculator 2026 | SponsorJuice",
     "description": "Calculate Instagram influencer rates for brand deals. Free calculator with package pricing, deliverables basket, and outreach pitch generator.",
     "h1": "Instagram Sponsorship Rate Calculator",
-    "intro": "How much should an Instagram influencer charge for sponsored posts? Estimate creator rates based on views, niche, audience location, and the deliverables in a package. Instagram Reels, feed posts, and Stories each carry different value — our calculator lets creators bundle them into a single sponsorship price. Finance and tech niches typically command higher rates than comedy or lifestyle content.",
+    "intro": "How much should an Instagram influencer charge for sponsored posts? Price Reels, feed posts, Stories, and bundles from your average views, niche, audience location, and deliverables.",
+    "contextBullets": [
+      "Reels often match or beat static feed posts because reach can scale faster.",
+      "US and Canadian audiences usually justify stronger quote ranges.",
+      "Bundle Reels, Stories, feed posts, and bio links instead of pricing each item alone."
+    ],
+    "example": {
+      "niche": "tech",
+      "nicheLabel": "Tech",
+      "views": 10000,
+      "geo": "us_ca",
+      "geoLabel": "US/Canada"
+    },
     "howToUse": "Start with average Reels or feed post views and your content niche. Choose audience geography — US and Canadian followers often justify premium Instagram rates. Bundle Reels, Stories, feed posts, and bio links into one package price. Use the rate range to anchor negotiations, save your quote locally, and copy the outreach pitch when you are ready to email brands.",
     "crossLinkSuffix": "to structure your Instagram outreach, then cross-check rates on our TikTok and YouTube calculators if you repurpose content across channels.",
     "howToUseHeading": "How do I calculate Instagram sponsorship rates?",
-    "citabilityBlock": "An Instagram sponsorship rate is what an influencer charges brands for sponsored Reels, feed posts, Stories, or bundled packages. SponsorJuice uses average post or Reel views multiplied by an Instagram coefficient of $0.007 to $0.015 per view, scaled by niche and audience geography. A tech creator with 10,000 average views and a US/Canada audience might charge $105 to $225 per dedicated post. Reels often match or exceed static feed post rates because of higher reach potential. Pricing data aligns with publicly cited CPM ranges from influencer marketing platforms and agency rate cards. Package multiple deliverables together rather than pricing each post in isolation — the calculator below builds custom package rates and generates outreach copy.",
+    "citabilityBlock": "An Instagram sponsorship rate is what an influencer charges brands for sponsored Reels, feed posts, Stories, or bundled packages. SponsorJuice uses average post or Reel views multiplied by an Instagram coefficient of $0.007 to $0.015 per view, scaled by niche and audience geography. A tech creator with 10,000 average views and a US/Canada audience might charge $158 to $338 per dedicated post. Reels often match or exceed static feed post rates because of higher reach potential. Pricing data aligns with publicly cited CPM ranges from influencer marketing platforms and agency rate cards. Package multiple deliverables together rather than pricing each post in isolation — the calculator below builds custom package rates and generates outreach copy.",
     "keywords": ["instagram sponsorship rate", "instagram influencer calculator", "how much to charge instagram", "instagram brand deal rates 2026"],
     "faqs": [
       {
         "question": "How much should I charge for an Instagram sponsorship?",
-        "answer": "Instagram sponsorship rates typically range from $0.007 to $0.015 per view. A creator with 50K followers, 10K average views in the tech niche targeting US audiences might charge $105–$225 per dedicated post."
+        "answer": "Instagram sponsorship rates typically range from $0.007 to $0.015 per view. A creator with 10K average views in the tech niche targeting US audiences might charge $158–$338 per dedicated post."
       },
       {
         "question": "What deliverables should I include in an Instagram brand deal?",
@@ -53,7 +77,19 @@
     "title": "YouTube Sponsorship Rate Calculator 2026 | SponsorJuice",
     "description": "Calculate YouTube creator sponsorship rates for brand deals. Free rate calculator with CPM-based pricing, deliverables, and pitch templates.",
     "h1": "YouTube Sponsorship Rate Calculator",
-    "intro": "How much should a YouTuber charge for sponsored content? Calculate brand deal rates based on average views, niche, audience geography, and deliverable packages. YouTube sponsorships typically pay more per view than TikTok or Instagram due to longer watch times and higher production value. Use dedicated video, integrated ad, and cross-platform deliverable options to build a quote.",
+    "intro": "How much should a YouTuber charge for sponsored content? Estimate brand deal rates from average views, niche, audience geography, and deliverable packages.",
+    "contextBullets": [
+      "YouTube usually commands higher per-view rates because long-form content carries more watch time.",
+      "Dedicated videos price above integrated sponsor segments.",
+      "Shorts can be modeled with the same calculator, but long-form integrations often justify higher quotes."
+    ],
+    "example": {
+      "niche": "finance",
+      "nicheLabel": "Finance",
+      "views": 50000,
+      "geo": "us_ca",
+      "geoLabel": "US/Canada"
+    },
     "howToUse": "Enter average long-form video views (or Shorts views if that is your primary format) and select your niche. US and Canadian watch time typically commands higher CPMs than global averages. Price dedicated videos, integrated segments, and cross-platform mentions separately or as a bundle. Save quotes locally and send brands the generated pitch email when your range looks right.",
     "crossLinkSuffix": "for YouTube sponsorship emails, then explore our TikTok and Instagram calculators if you distribute clips or cross-post to short-form platforms.",
     "howToUseHeading": "How do I calculate YouTube sponsorship rates?",
@@ -62,7 +98,7 @@
     "faqs": [
       {
         "question": "How much should I charge for a YouTube sponsorship?",
-        "answer": "YouTube sponsorship rates typically range from $0.015 to $0.035 per view. A creator with 100K subscribers, 50K average views in the finance niche targeting US audiences might charge $1,350–$3,150 per dedicated video."
+        "answer": "YouTube sponsorship rates typically range from $0.015 to $0.035 per view. A creator with 50K average views in the finance niche targeting US audiences might charge $2,025–$4,725 per dedicated video."
       },
       {
         "question": "What is the difference between integrated and dedicated YouTube ads?",
@@ -71,6 +107,43 @@
       {
         "question": "Do YouTube Shorts pay less than long-form sponsorships?",
         "answer": "Yes, YouTube Shorts typically command lower sponsorship rates than long-form videos due to shorter watch time and different ad integration formats. Long-form dedicated videos remain the highest-value deliverable."
+      }
+    ]
+  },
+  "facebook": {
+    "title": "Facebook Sponsorship Rate Calculator 2026 | SponsorJuice",
+    "description": "Calculate Facebook creator rates for brand deals. Free calculator for feed posts, Reels, Stories, deliverables packages, and outreach pitch templates.",
+    "h1": "Facebook Sponsorship Rate Calculator",
+    "intro": "How much should a Facebook creator charge for sponsored posts? Price feed posts, Reels, Stories, and bundled packages from average views, niche, audience location, and deliverables.",
+    "contextBullets": [
+      "Facebook often works best for older, purchase-ready audiences.",
+      "Reels can earn a premium over static feed posts when reach expands beyond followers.",
+      "Use the same deliverables basket to price Reels, Stories, integrated mentions, and link placements."
+    ],
+    "example": {
+      "niche": "beauty",
+      "nicheLabel": "Beauty",
+      "views": 10000,
+      "geo": "us_ca",
+      "geoLabel": "US/Canada"
+    },
+    "howToUse": "Enter average views per Facebook post or Reel and select your content niche. Set audience geography — US and Canadian followers often justify premium rates despite lower organic reach than Instagram. Bundle Reels, Stories, feed posts, and link placements into one package price. Use the rate range to anchor negotiations, save your quote locally, and copy the outreach pitch when you are ready to email brands.",
+    "crossLinkSuffix": "to structure your Facebook outreach, then cross-check rates on our TikTok, Instagram, and YouTube calculators if you cross-post across Meta and other platforms.",
+    "howToUseHeading": "How do I calculate Facebook sponsorship rates?",
+    "citabilityBlock": "A Facebook sponsorship rate is what a creator charges brands for sponsored feed posts, Reels, Stories, or bundled packages. SponsorJuice uses average post or Reel views multiplied by a Facebook coefficient of $0.005 to $0.013 per view, scaled by niche and audience geography. A beauty creator with 10,000 average views and a US/Canada audience might charge $90 to $234 for a dedicated video. Facebook brand deals typically sit at or slightly below Instagram per-view benchmarks but reach audiences aged 25–54 with higher purchase intent. Reels often command a premium over static feed posts due to algorithmic distribution. Estimates align with 2026 creator economy benchmarks citing $5–$15 per 1,000 followers as a Facebook base rate. Package multiple deliverables together — the calculator below builds custom package rates and generates outreach copy.",
+    "keywords": ["facebook sponsorship rate", "facebook influencer calculator", "how much to charge facebook", "facebook brand deal rates 2026", "facebook reels sponsorship"],
+    "faqs": [
+      {
+        "question": "How much should I charge for a Facebook sponsorship?",
+        "answer": "Facebook sponsorship rates typically range from $0.005 to $0.013 per view, multiplied by niche and audience geography. A creator with 50K followers and 10K average views in the beauty niche targeting US audiences might charge $90–$234 per dedicated post or Reel."
+      },
+      {
+        "question": "Do Facebook Reels pay more than feed posts?",
+        "answer": "Yes, sponsored Facebook Reels typically command higher rates than static feed posts because Reels receive algorithmic boost and reach beyond your existing followers. Use the deliverables basket to price dedicated videos, integrated mentions, and Stories together."
+      },
+      {
+        "question": "How do Facebook rates compare to Instagram?",
+        "answer": "Facebook brand deals often pay slightly less per view than Instagram due to lower organic reach, but Facebook audiences skew older with higher purchasing power. Finance and tech niches still command premium multipliers on both platforms."
       }
     ]
   }

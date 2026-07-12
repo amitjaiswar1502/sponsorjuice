@@ -37,6 +37,14 @@ describe('calculateBaseRate', () => {
     const global = calculateBaseRate(10_000, 'instagram', 'tech', 'global');
     expect(global.low).toBeLessThan(us.low);
   });
+
+  it('calculates Facebook beauty US rate correctly', () => {
+    const result = calculateBaseRate(10_000, 'facebook', 'beauty', 'us_ca');
+    // 10000 * 0.005 * 1.2 * 1.5 = 90
+    expect(result.low).toBe(90);
+    // 10000 * 0.013 * 1.2 * 1.5 = 234
+    expect(result.high).toBe(234);
+  });
 });
 
 describe('calculateBasketMultiplier', () => {
@@ -118,6 +126,20 @@ describe('formatPitchCurrency', () => {
   it('formats USD for us_ca and global', () => {
     expect(formatPitchCurrency(126, 'us_ca')).toBe('$126');
     expect(formatPitchCurrency(126, 'global')).toBe('$126');
+  });
+});
+
+describe('createDefaultProfiles', () => {
+  it('returns a profile for each platform', () => {
+    const profiles = createDefaultProfiles('facebook');
+    expect(profiles).toHaveLength(4);
+    expect(profiles.map((p) => p.platform)).toEqual([
+      'tiktok',
+      'instagram',
+      'youtube',
+      'facebook',
+    ]);
+    expect(profiles.find((p) => p.platform === 'facebook')?.active).toBe(true);
   });
 });
 

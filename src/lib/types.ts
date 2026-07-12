@@ -1,4 +1,4 @@
-export type Platform = 'tiktok' | 'instagram' | 'youtube';
+export type Platform = 'tiktok' | 'instagram' | 'youtube' | 'facebook';
 export type Niche = 'finance' | 'tech' | 'beauty' | 'comedy';
 export type Geo = 'us_ca' | 'uk_au' | 'global';
 
@@ -56,4 +56,25 @@ export interface RateResult {
   baseRateHigh: number;
   packageRateLow: number;
   packageRateHigh: number;
+}
+
+export interface PlatformSeoEntry {
+  title: string;
+  description: string;
+  h1: string;
+  intro: string;
+  contextBullets: string[];
+  example: {
+    niche: Niche;
+    nicheLabel: string;
+    views: number;
+    geo: Geo;
+    geoLabel: string;
+  };
+  howToUse: string;
+  howToUseHeading: string;
+  crossLinkSuffix: string;
+  citabilityBlock: string;
+  keywords: string[];
+  faqs: { question: string; answer: string }[];
 }

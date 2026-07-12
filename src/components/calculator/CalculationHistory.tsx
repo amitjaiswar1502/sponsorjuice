@@ -66,7 +66,7 @@ export default function CalculationHistory({ refreshKey, onLoad }: Props) {
             >
               <span class="font-medium capitalize">{label}</span>
               <span class="mx-1 text-gray-400">·</span>
-              <span class="text-gray-600">
+              <span class="font-data text-gray-600">
                 {formatCurrency(calc.packageRateLow)} – {formatCurrency(calc.packageRateHigh)}
               </span>
               <span class="ml-2 text-xs text-gray-400">

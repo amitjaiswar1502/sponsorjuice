@@ -1,21 +1,24 @@
 ---
-import type { Platform } from '../../lib/types';
+import type { Platform, PlatformSeoEntry } from '../../lib/types';
+import { ALL_PLATFORMS } from '../../data/calculator-math';
 import seoConfig from '../../data/SEOConfig.json';
 import Layout from '../../layouts/Layout.astro';
 import CalculatorIsland from '../../components/calculator/CalculatorIsland';
 import CalculatorStaticFallback from '../../components/calculator/CalculatorStaticFallback.astro';
+import PlatformRateIntro from '../../components/pages/PlatformRateIntro.astro';
+import FaqItem from '../../components/pages/FaqItem.astro';
 
 export function getStaticPaths() {
-  const platforms: Platform[] = ['tiktok', 'instagram', 'youtube'];
-  return platforms.map((platform) => ({
+  const platformSeoConfig = seoConfig as Record<Platform, PlatformSeoEntry>;
+  return ALL_PLATFORMS.map((platform) => ({
     params: { platform },
-    props: { platform, seo: seoConfig[platform] },
+    props: { platform, seo: platformSeoConfig[platform] },
   }));
 }
 
 interface Props {
   platform: Platform;
-  seo: (typeof seoConfig)[Platform];
+  seo: PlatformSeoEntry;
 }
 
 const { platform, seo } = Astro.props;
@@ -55,23 +58,24 @@ const pageSchema = {
 <Layout title={seo.title} description={seo.description}>
   <script type="application/ld+json" set:html={JSON.stringify(pageSchema)} />
 
-  <section class="bg-gradient-to-b from-juice-50 to-gray-50 py-12">
-    <div class="mx-auto max-w-6xl px-4">
+  <section class="bg-linear-to-b from-juice-50 to-gray-50 py-12">
+    <div class="mx-auto max-w-3xl px-4">
       <h1 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl md:text-5xl">
         {seo.h1}
       </h1>
-      <p class="mt-4 max-w-2xl text-lg text-gray-600">
-        {seo.intro}
-      </p>
-      <p class="mt-4 max-w-3xl text-base leading-relaxed text-gray-600">
-        {seo.citabilityBlock}
-      </p>
+      <PlatformRateIntro
+        platform={platform}
+        intro={seo.intro}
+        contextBullets={seo.contextBullets}
+        example={seo.example}
+        citabilityBlock={seo.citabilityBlock}
+      />
     </div>
   </section>
 
   <section class="mx-auto max-w-6xl px-4 py-12">
     <CalculatorStaticFallback platform={platform} />
-    <div class="min-h-[48rem]">
+    <div class="min-h-192">
       <CalculatorIsland client:load initialPlatform={platform} />
     </div>
   </section>
@@ -79,8 +83,8 @@ const pageSchema = {
   <section class="border-t border-gray-200 bg-gray-50 py-12">
     <div class="mx-auto max-w-3xl px-4">
       <h2 class="mb-4 text-2xl font-bold text-gray-900">{seo.howToUseHeading}</h2>
-      <p class="text-gray-600">{seo.howToUse}</p>
-      <p class="mt-4 text-gray-600">
+      <p class="max-w-[65ch] text-base leading-[1.65] text-pretty text-gray-700">{seo.howToUse}</p>
+      <p class="mt-4 max-w-[65ch] text-base leading-[1.65] text-pretty text-gray-700">
         Read our{' '}
         <a href="/blog/how-to-pitch/" class="font-medium text-juice-600 hover:text-juice-700">brand pitch guide</a>{' '}
         {seo.crossLinkSuffix}
@@ -94,10 +98,9 @@ const pageSchema = {
       <div class="space-y-6">
         {
           seo.faqs.map((faq) => (
-            <div>
-              <h3 class="text-lg font-semibold text-gray-900">{faq.question}</h3>
-              <p class="mt-2 text-gray-600">{faq.answer}</p>
-            </div>
+            <FaqItem question={faq.question}>
+              {faq.answer}
+            </FaqItem>
           ))
         }
       </div>

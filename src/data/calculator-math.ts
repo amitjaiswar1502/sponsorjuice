@@ -8,7 +8,12 @@ import type {
   RateResult,
 } from '../lib/types';
 
-export const ALL_PLATFORMS: Platform[] = ['tiktok', 'instagram', 'youtube'];
+export const ALL_PLATFORMS: Platform[] = [
+  'tiktok',
+  'instagram',
+  'youtube',
+  'facebook',
+];
 
 export const PLATFORM_COEFF: Record<
   Platform,
@@ -17,6 +22,7 @@ export const PLATFORM_COEFF: Record<
   tiktok: { low: 0.005, high: 0.012 },
   instagram: { low: 0.007, high: 0.015 },
   youtube: { low: 0.015, high: 0.035 },
+  facebook: { low: 0.005, high: 0.013 },
 };
 
 export const NICHE_MULTIPLIER: Record<Niche, number> = {
@@ -145,6 +151,7 @@ const PITCH_PLATFORM_LABELS: Record<Platform, string> = {
   tiktok: 'TikTok',
   instagram: 'Instagram',
   youtube: 'YouTube',
+  facebook: 'Facebook',
 };
 
 const PITCH_NICHE_LABELS: Record<Niche, string> = {

@@ -1,5 +1,6 @@
 @import "tailwindcss";
-@import "@fontsource-variable/outfit";
+@import "@fontsource-variable/plus-jakarta-sans/wght.css";
+@import "@fontsource-variable/jetbrains-mono/wght.css";
 
 @theme {
   --color-juice-50: #fff7ed;
@@ -12,7 +13,8 @@
   --color-juice-700: #c2410c;
   --color-juice-800: #9a3412;
   --color-juice-900: #7c2d12;
-  --font-sans: "Outfit Variable", system-ui, sans-serif;
+  --font-sans: "Plus Jakarta Sans Variable", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono Variable", ui-monospace, monospace;
 }
 
 html {
@@ -20,7 +22,7 @@ html {
 }
 
 body {
-  @apply bg-gray-50 font-sans text-gray-900 antialiased;
+  @apply bg-gray-50 font-sans text-base leading-[1.65] text-gray-700 antialiased;
   overflow-x: clip;
 }
 
@@ -70,7 +72,7 @@ body {
 }
 
 .prose h2 {
-  @apply mt-0 mb-4 text-2xl font-bold tracking-tight text-gray-900;
+  @apply mt-8 mb-4 text-2xl font-bold tracking-tight text-gray-900;
 }
 
 .prose h3 {
@@ -78,7 +80,7 @@ body {
 }
 
 .prose p {
-  @apply mb-4 max-w-[65ch] leading-relaxed text-gray-700;
+  @apply mb-4 max-w-[65ch] text-base leading-[1.65] text-pretty text-gray-700;
 }
 
 .prose ul {
@@ -86,7 +88,7 @@ body {
 }
 
 .prose li {
-  @apply mb-2;
+  @apply mb-1.5 leading-[1.65];
 }
 
 .prose a {
@@ -97,6 +99,51 @@ body {
   @apply rounded outline-2 outline-offset-2 outline-juice-500;
 }
 
+.prose blockquote {
+  @apply mb-6 max-w-none rounded-xl border border-juice-200 border-l-4 border-l-juice-500 bg-juice-50/70 px-5 py-4 text-base leading-[1.65] text-gray-700 not-italic;
+}
+
+.prose blockquote p {
+  @apply mb-0 max-w-none;
+}
+
+.prose blockquote strong {
+  @apply font-semibold text-gray-900;
+}
+
+.prose table {
+  @apply mb-6 block w-full overflow-x-auto rounded-xl border border-gray-200 text-sm;
+}
+
+.prose thead {
+  @apply bg-gray-50;
+}
+
+.prose th {
+  @apply px-4 py-3 text-left text-sm font-semibold text-gray-900;
+}
+
+.prose td {
+  @apply border-t border-gray-100 px-4 py-3 text-gray-700;
+}
+
+.prose tbody tr:last-child td {
+  @apply border-b-0;
+}
+
+.prose :is(th, td):last-child {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+  @apply text-gray-900;
+}
+
 .tabular-nums {
   font-variant-numeric: tabular-nums;
+}
+
+.font-data {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
 }

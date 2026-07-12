@@ -4,6 +4,7 @@ const MODE_LABELS: Record<Platform, string> = {
   tiktok: 'TikTok',
   instagram: 'Instagram',
   youtube: 'YouTube',
+  facebook: 'Facebook',
 };
 
 function labelForMode(mode: PitchMode): string {

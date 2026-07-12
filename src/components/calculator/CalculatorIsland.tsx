@@ -181,7 +181,17 @@ export default function CalculatorIsland({ initialPlatform = 'tiktok' }: Props) 
 
   const handleLoad = (calc: SavedCalculation) => {
     if (calc.version === 2 && calc.platformProfiles) {
-      setProfiles(calc.platformProfiles);
+      const defaults = createDefaultProfiles(
+        calc.platformProfiles.find((p) => p.active)?.platform ??
+          calc.platform ??
+          'tiktok',
+      );
+      const merged = ALL_PLATFORMS.map(
+        (platform) =>
+          calc.platformProfiles!.find((p) => p.platform === platform) ??
+          defaults.find((d) => d.platform === platform)!,
+      );
+      setProfiles(merged);
       setBasket(calc.basket);
       setPitchMode(
         calc.activePitchMode ??
@@ -287,11 +297,11 @@ export default function CalculatorIsland({ initialPlatform = 'tiktok' }: Props) 
             <p class="text-sm font-medium uppercase tracking-wide text-juice-600">
               {activeProfiles.length > 1 ? 'Package Total' : 'Estimated Rate'}
             </p>
-            <p class="mt-2 break-words text-3xl font-bold text-gray-900 tabular-nums sm:text-4xl">
+            <p class="font-data mt-2 break-words text-3xl font-bold text-gray-900 sm:text-4xl">
               {formatCurrency(displayLow)} – {formatCurrency(displayHigh)}
             </p>
             {activeProfiles.length === 1 && rateLines[0] && (
-              <p class="mt-2 text-sm text-gray-500">
+              <p class="font-data mt-2 text-sm text-gray-500">
                 Base rate: {formatCurrency(rateLines[0].baseRateLow)} –{' '}
                 {formatCurrency(rateLines[0].baseRateHigh)}
                 {basket.length > 0 && ' · Package multiplier applied'}

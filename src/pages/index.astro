@@ -15,7 +15,7 @@ const websiteSchema = {
       name: 'SponsorJuice',
       url: siteUrl,
       description:
-        'Free creator rate calculator for TikTok, Instagram, and YouTube brand deals with pitch templates and local history.',
+        'Free creator rate calculator for TikTok, Instagram, YouTube, and Facebook brand deals with pitch templates and local history.',
     },
     {
       '@type': 'WebApplication',
@@ -29,7 +29,7 @@ const websiteSchema = {
         priceCurrency: 'USD',
       },
       description:
-        'Free calculator for TikTok, Instagram, and YouTube brand deal pricing with deliverables packages and pitch templates.',
+        'Free calculator for TikTok, Instagram, YouTube, and Facebook brand deal pricing with deliverables packages and pitch templates.',
     },
     {
       '@type': 'FAQPage',
@@ -74,7 +74,7 @@ const websiteSchema = {
 
 <Layout
   title="SponsorJuice — Free Creator Rate Calculator & Brand Pitch Builder"
-  description="Price TikTok, Instagram, and YouTube brand deals with our free calculator. Build sponsorship packages, generate pitch emails, and save rates locally."
+  description="Price TikTok, Instagram, YouTube, and Facebook brand deals with our free calculator. Build sponsorship packages, generate pitch emails, and save rates locally."
 >
   <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
 
@@ -84,8 +84,8 @@ const websiteSchema = {
         Know Your Worth.<br />
         <span class="text-juice-600">Charge With Confidence.</span>
       </h1>
-      <p class="mx-auto mt-4 max-w-2xl text-lg text-gray-600">
-        Free creator rate calculator for TikTok, Instagram, and YouTube brand deals.
+      <p class="mx-auto mt-4 max-w-[65ch] text-lg leading-[1.65] text-pretty text-gray-600">
+        Free creator rate calculator for TikTok, Instagram, YouTube, and Facebook brand deals.
         Build packages, generate pitch emails, and save calculations locally.
       </p>
       <div class="mt-8 flex flex-wrap justify-center gap-4">
@@ -107,22 +107,77 @@ const websiteSchema = {
         >
           YouTube Calculator
         </a>
+        <a
+          href="/calculator/facebook/"
+          class="rounded-lg border border-juice-300 bg-white px-6 py-3 text-sm font-semibold text-juice-700 hover:bg-juice-50"
+        >
+          Facebook Calculator
+        </a>
       </div>
     </div>
   </section>
 
   <section class="border-b border-gray-200 bg-white py-10">
     <div class="mx-auto max-w-3xl px-4">
-      <h2 class="text-2xl font-bold text-gray-900">What is SponsorJuice?</h2>
-      <p class="mt-4 leading-relaxed text-gray-600">
-        SponsorJuice is a free creator rate calculator that estimates TikTok, Instagram, and YouTube
-        brand deal pricing based on average views, content niche, audience geography, and deliverable
-        packages. The tool multiplies average views by a platform coefficient — TikTok $0.005–$0.012
-        per view, Instagram $0.007–$0.015, YouTube $0.015–$0.035 — then applies niche and geography
-        multipliers. A beauty creator with 10,000 average views and a US/Canada audience might charge
-        $60–$144 on TikTok, $105–$225 on Instagram, or higher on YouTube for a dedicated video.
-        Estimates follow publicly cited influencer marketing CPM benchmarks. All calculations run in
-        your browser with no account required; saved quotes persist in local storage only.
+      <h2 class="text-2xl font-bold tracking-tight text-gray-900">What is SponsorJuice?</h2>
+      <p class="mt-4 max-w-[65ch] text-base leading-[1.65] text-pretty text-gray-700">
+        SponsorJuice is a free creator rate calculator. Enter your average views, niche, audience
+        location, and deliverables — we estimate a fair sponsorship range and generate outreach copy.
+        No account required; everything runs in your browser and saved quotes stay in local storage only.
+      </p>
+
+      <div class="mt-8">
+        <h3 class="text-sm font-semibold tracking-wide text-gray-900">
+          Platform coefficient <span class="font-normal text-gray-500">(per view, before niche &amp; geo)</span>
+        </h3>
+        <dl class="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-2">
+          <div class="flex items-center justify-between gap-4 rounded-lg border border-gray-200 bg-gray-50 px-4 py-3">
+            <dt class="text-sm font-medium text-gray-700">TikTok</dt>
+            <dd class="font-data text-sm font-semibold text-gray-900">$0.005–$0.012</dd>
+          </div>
+          <div class="flex items-center justify-between gap-4 rounded-lg border border-gray-200 bg-gray-50 px-4 py-3">
+            <dt class="text-sm font-medium text-gray-700">Instagram</dt>
+            <dd class="font-data text-sm font-semibold text-gray-900">$0.007–$0.015</dd>
+          </div>
+          <div class="flex items-center justify-between gap-4 rounded-lg border border-gray-200 bg-gray-50 px-4 py-3">
+            <dt class="text-sm font-medium text-gray-700">YouTube</dt>
+            <dd class="font-data text-sm font-semibold text-gray-900">$0.015–$0.035</dd>
+          </div>
+          <div class="flex items-center justify-between gap-4 rounded-lg border border-gray-200 bg-gray-50 px-4 py-3">
+            <dt class="text-sm font-medium text-gray-700">Facebook</dt>
+            <dd class="font-data text-sm font-semibold text-gray-900">$0.005–$0.013</dd>
+          </div>
+        </dl>
+      </div>
+
+      <div class="mt-8 rounded-xl border border-juice-200 bg-juice-50/60 p-5">
+        <p class="text-sm font-semibold text-gray-900">Example dedicated-video range</p>
+        <p class="mt-1 text-sm text-gray-600">
+          Beauty niche · <span class="font-data text-gray-800">10,000</span> avg views · US/Canada audience
+        </p>
+        <ul class="mt-4 space-y-2.5">
+          <li class="flex items-center justify-between gap-4 border-b border-juice-200/80 pb-2.5 text-sm last:border-0 last:pb-0">
+            <span class="font-medium text-gray-700">TikTok</span>
+            <span class="font-data font-semibold text-juice-700">$90–$216</span>
+          </li>
+          <li class="flex items-center justify-between gap-4 border-b border-juice-200/80 pb-2.5 text-sm last:border-0 last:pb-0">
+            <span class="font-medium text-gray-700">Instagram</span>
+            <span class="font-data font-semibold text-juice-700">$126–$270</span>
+          </li>
+          <li class="flex items-center justify-between gap-4 border-b border-juice-200/80 pb-2.5 text-sm last:border-0 last:pb-0">
+            <span class="font-medium text-gray-700">Facebook</span>
+            <span class="font-data font-semibold text-juice-700">$90–$234</span>
+          </li>
+          <li class="flex items-center justify-between gap-4 text-sm">
+            <span class="font-medium text-gray-700">YouTube</span>
+            <span class="font-data font-semibold text-juice-700">$270–$630</span>
+          </li>
+        </ul>
+      </div>
+
+      <p class="mt-6 max-w-[65ch] text-base leading-[1.65] text-pretty text-gray-600">
+        Estimates follow publicly cited influencer marketing CPM benchmarks. Niche and geography
+        multipliers adjust each range — use the calculator above for your exact metrics.
       </p>
     </div>
   </section>
@@ -158,21 +213,21 @@ const websiteSchema = {
         <div class="rounded-xl border border-gray-200 p-6 text-center">
           <p class="text-3xl" aria-hidden="true">⚡</p>
           <h3 class="mt-3 font-semibold text-gray-900">Instant Results</h3>
-          <p class="mt-2 text-sm text-gray-600">
+          <p class="mt-2 text-base leading-[1.65] text-gray-700">
             Pure static HTML loads instantly. Calculator hydrates only when you need it.
           </p>
         </div>
         <div class="rounded-xl border border-gray-200 p-6 text-center">
           <p class="text-3xl" aria-hidden="true">📦</p>
           <h3 class="mt-3 font-semibold text-gray-900">Package Builder</h3>
-          <p class="mt-2 text-sm text-gray-600">
+          <p class="mt-2 text-base leading-[1.65] text-gray-700">
             Combine deliverables into custom packages with automatic rate multipliers.
           </p>
         </div>
         <div class="rounded-xl border border-gray-200 p-6 text-center">
           <p class="text-3xl" aria-hidden="true">✉️</p>
           <h3 class="mt-3 font-semibold text-gray-900">Pitch Generator</h3>
-          <p class="mt-2 text-sm text-gray-600">
+          <p class="mt-2 text-base leading-[1.65] text-gray-700">
             Real-time outreach templates that update as metrics are adjusted.
           </p>
         </div>
@@ -211,7 +266,7 @@ const websiteSchema = {
               </svg>
             </span>
           </summary>
-          <p class="mt-4 leading-relaxed text-gray-600">
+          <p class="mt-4 max-w-[65ch] leading-[1.65] text-gray-700">
             Yes, SponsorJuice is 100% free. All calculations, package builders, and pitch templates are fully accessible without any paywalls or registration requirements.
           </p>
         </details>
@@ -228,7 +283,7 @@ const websiteSchema = {
               </svg>
             </span>
           </summary>
-          <p class="mt-4 leading-relaxed text-gray-600">
+          <p class="mt-4 max-w-[65ch] leading-[1.65] text-gray-700">
             No, SponsorJuice runs entirely locally in your web browser. No follower metrics, view counts, or calculated rates are ever uploaded to any database or server. All history is stored purely in your browser's local storage.
           </p>
         </details>
@@ -245,7 +300,7 @@ const websiteSchema = {
               </svg>
             </span>
           </summary>
-          <p class="mt-4 leading-relaxed text-gray-600">
+          <p class="mt-4 max-w-[65ch] leading-[1.65] text-gray-700">
             Rates are estimated using standard industry CPM ranges. The formula multiplies average video/reel views by a platform coefficient, and scales the range using specific content niche and target audience geography factors.
           </p>
         </details>
@@ -262,7 +317,7 @@ const websiteSchema = {
               </svg>
             </span>
           </summary>
-          <p class="mt-4 leading-relaxed text-gray-600">
+          <p class="mt-4 max-w-[65ch] leading-[1.65] text-gray-700">
             Yes. SponsorJuice runs entirely client-side in your browser. All calculations happen on your device without sending metrics to our servers. Saved history persists in local storage until you clear it.
           </p>
         </details>

@@ -5,6 +5,7 @@ const PLATFORM_LABELS: Record<Platform, string> = {
   tiktok: 'TikTok',
   instagram: 'Instagram',
   youtube: 'YouTube',
+  facebook: 'Facebook',
 };
 
 interface LineItem extends PlatformRateLine {
@@ -30,7 +31,7 @@ export default function RateSummary({ lines, totalLow, totalHigh }: Props) {
             class="flex items-center justify-between gap-2 text-sm text-gray-600"
           >
             <span>{PLATFORM_LABELS[line.platform]}</span>
-            <span class="tabular-nums text-gray-900">
+            <span class="font-data text-gray-900">
               {formatCurrency(line.packageRateLow)} –{' '}
               {formatCurrency(line.packageRateHigh)}
             </span>
@@ -39,7 +40,7 @@ export default function RateSummary({ lines, totalLow, totalHigh }: Props) {
       </ul>
       <div class="mt-3 flex items-center justify-between gap-2 border-t border-gray-100 pt-3 text-sm font-semibold text-gray-900">
         <span>Package total</span>
-        <span class="tabular-nums text-juice-600">
+        <span class="font-data text-juice-600">
           {formatCurrency(totalLow)} – {formatCurrency(totalHigh)}
         </span>
       </div>

@@ -5,6 +5,7 @@ const PLATFORM_LABELS: Record<Platform, string> = {
   tiktok: 'TikTok',
   instagram: 'Instagram',
   youtube: 'YouTube',
+  facebook: 'Facebook',
 };
 
 const NICHES: { value: Niche; label: string }[] = [
@@ -73,7 +74,7 @@ export default function PlatformAccountCard({
               class="mb-2 flex justify-between text-sm font-medium text-gray-700"
             >
               <span>Followers</span>
-              <span class="text-juice-600 tabular-nums">{followers.toLocaleString()}</span>
+              <span class="font-data text-juice-600">{followers.toLocaleString()}</span>
             </label>
             <input
               id={`${platform}-followers`}
@@ -95,7 +96,7 @@ export default function PlatformAccountCard({
               class="mb-2 flex justify-between text-sm font-medium text-gray-700"
             >
               <span>Average Views per Post</span>
-              <span class="text-juice-600 tabular-nums">{views.toLocaleString()}</span>
+              <span class="font-data text-juice-600">{views.toLocaleString()}</span>
             </label>
             <input
               id={`${platform}-views`}
@@ -156,7 +157,7 @@ export default function PlatformAccountCard({
       {active && (
         <div class="border-t border-gray-100 px-4 py-2.5 text-sm text-gray-500">
           <span class="font-medium text-gray-700">Platform rate:</span>{' '}
-          <span class="tabular-nums text-juice-600">
+          <span class="font-data text-juice-600">
             {formatCurrency(packageRateLow)} – {formatCurrency(packageRateHigh)}
           </span>
         </div>

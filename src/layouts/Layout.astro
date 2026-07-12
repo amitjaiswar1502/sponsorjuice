@@ -2,7 +2,8 @@
 import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import outfitLatin from '@fontsource-variable/outfit/files/outfit-latin-wght-normal.woff2?url';
+import plusJakartaLatin from '@fontsource-variable/plus-jakarta-sans/files/plus-jakarta-sans-latin-wght-normal.woff2?url';
+import jetbrainsMonoLatin from '@fontsource-variable/jetbrains-mono/files/jetbrains-mono-latin-wght-normal.woff2?url';
 
 interface Props {
   title: string;
@@ -50,7 +51,8 @@ const ogImage = image.startsWith('http') ? image : new URL(image, siteUrl).href;
     <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap-index.xml" />
     <meta name="theme-color" content="#f97316" />
 
-    <link rel="preload" href={outfitLatin} as="font" type="font/woff2" crossorigin="anonymous" />
+    <link rel="preload" href={plusJakartaLatin} as="font" type="font/woff2" crossorigin="anonymous" />
+    <link rel="preload" href={jetbrainsMonoLatin} as="font" type="font/woff2" crossorigin="anonymous" />
 
     <title>{title}</title>
     <meta name="description" content={description} />
