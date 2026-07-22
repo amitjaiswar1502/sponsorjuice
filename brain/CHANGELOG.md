@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## v2026.07.22-1205-one-click-email-send
+- Added 1-click email sending for pitch templates (`PitchTemplate.tsx`) and saved calculation drafts (`CalculationHistory.tsx`).
+- Created `src/lib/email.ts` helper and `src/lib/email.test.ts` unit tests for parsing subject/body and generating `mailto:` and Gmail Web compose links.
+- Updated KB: `07-features.md`, `features/002-pitch-templates.md`, `features/003-calculation-history.md`, and added `features/008-one-click-email-send.md`.
+
 ## v2026.07.12-2016-blog-prose-formatting
 - Styled blog TL;DR blockquotes as juice callout cards and markdown tables with borders, padding, and scroll.
 - Applied `.font-data` to the last column of prose tables for rate alignment.

@@ -8,12 +8,13 @@ Status: draft
 | ID | Feature | Doc | Status |
 | --- | --- | --- | --- |
 | 001 | Rate calculator | [features/001-rate-calculator.md](features/001-rate-calculator.md) | reviewed |
-| 002 | Pitch templates | [features/002-pitch-templates.md](features/002-pitch-templates.md) | draft |
-| 003 | Calculation history | [features/003-calculation-history.md](features/003-calculation-history.md) | draft |
+| 002 | Pitch templates | [features/002-pitch-templates.md](features/002-pitch-templates.md) | active |
+| 003 | Calculation history | [features/003-calculation-history.md](features/003-calculation-history.md) | active |
 | 004 | Platform SEO landing pages | [features/004-platform-seo-pages.md](features/004-platform-seo-pages.md) | reviewed |
 | 005 | Blog / creator guides | — | TODO |
 | 006 | Google AdSense monetization | — | TODO |
 | 007 | Multi-platform combined pitch | — | TODO (logic exists in calculator; doc pending) |
+| 008 | 1-click email send | [features/008-one-click-email-send.md](features/008-one-click-email-send.md) | active |
 
 ## Discovered modules (not yet feature-doc'd)
 
