@@ -19,6 +19,7 @@ Status: draft
 | `/about/` | `about.astro` | About / methodology |
 | `/contact/` | `contact.astro` | Contact |
 | `/privacy/` | `privacy.astro` | Privacy policy |
+| `/terms/` | `terms.astro` | Terms of Service |
 | `/robots.txt` | `robots.txt.ts` | Robots generator |
 
 Trailing slashes enforced site-wide.
@@ -43,11 +44,16 @@ Trailing slashes enforced site-wide.
 
 - `PageHero`, `ContentSection`, `ContactCard`, `FaqItem`, `PolicyToc`
 
-### Blog posts (3)
+### Blog posts (8)
 
 - `how-to-pitch.mdx`
 - `instagram-reels-pricing-guide.mdx`
 - `tiktok-sponsorship-rates-2026.mdx`
+- `youtube-sponsorship-rate-card-2026.mdx`
+- `micro-influencer-sponsorship-rates.mdx`
+- `creator-sponsorship-contract-terms.mdx`
+- `how-to-build-creator-media-kit.mdx`
+- `facebook-reels-monetization-sponsorship-guide.mdx`
 
 ## Important files inspected
 

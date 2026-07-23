@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## v2026.07.23-1538-adsense-policy-violation-fix
+- Fixed AdSense "Low value content" rejection by expanding trust pages and blog content library.
+- Created `src/pages/terms.astro` (Terms of Service) and linked in `Footer.astro`.
+- Expanded `src/pages/about.astro` with explicit E-E-A-T background, data methodology, and editorial standards.
+- Published 5 new comprehensive MDX creator guides in `src/content/blog/` (YouTube Rate Card 2026, Micro-Influencer Rates, Sponsorship Contract Terms, Creator Media Kit Guide, Facebook Reels Monetization), expanding library from 3 to 8 long-form articles.
+- Verified static build (`npm run build`) generating 18 clean static routes.
+- KB: updated `06-ui-and-routes.md`.
+
 ## v2026.07.22-1205-one-click-email-send
 - Added 1-click email sending for pitch templates (`PitchTemplate.tsx`) and saved calculation drafts (`CalculationHistory.tsx`).
 - Created `src/lib/email.ts` helper and `src/lib/email.test.ts` unit tests for parsing subject/body and generating `mailto:` and Gmail Web compose links.
